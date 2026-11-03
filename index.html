@@ -3,211 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ammar Alazaza | عمار العزازه</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>عمار العزازه | Ammar Alazaza</title>
     <style>
-        :root {
-            --bg-color: #0b0c10;
-            --card-bg: #1f2833;
-            --accent-gold: #D4AF37;
-            --gold-hover: #F3E5AB;
-            --text-color: #ffffff;
-            --text-muted: #c5c6c7;
-            --border-color: rgba(212, 175, 55, 0.3);
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
-        header { background: rgba(11, 12, 16, 0.95); border-bottom: 2px solid var(--accent-gold); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 900; color: var(--accent-gold); text-decoration: none; }
-        nav a { color: var(--text-color); text-decoration: none; margin-right: 1.2rem; font-weight: 600; }
-        nav a:hover { color: var(--accent-gold); }
-        .hero { text-align: center; padding: 3.5rem 1rem; background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, rgba(11,12,16,1) 80%); }
-        .avatar { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--accent-gold); margin-bottom: 1rem; }
-        .hero h1 { font-size: 2.2rem; color: var(--accent-gold); margin-bottom: 0.5rem; }
-        .hero p { color: var(--text-muted); max-width: 600px; margin: 0 auto 1.5rem; }
-        .stats-bar { display: inline-flex; gap: 1.5rem; background: var(--card-bg); padding: 0.6rem 1.5rem; border-radius: 25px; border: 1px solid var(--border-color); font-size: 0.9rem; }
-        .container { max-width: 1000px; margin: auto; padding: 2rem 1rem; }
-        .section-title { font-size: 1.6rem; color: var(--accent-gold); border-bottom: 2px solid var(--accent-gold); display: inline-block; margin-bottom: 1.5rem; padding-bottom: 0.3rem; }
-        .search-box { width: 100%; padding: 0.8rem 1.2rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--card-bg); color: #fff; font-size: 1rem; margin-bottom: 2rem; }
-        .posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        .post-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); padding: 1.5rem; }
-        .post-card h3 { color: var(--accent-gold); margin-bottom: 0.8rem; }
-        .post-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); }
-        .btn-like { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.95rem; }
-        .btn-like.active { color: #ff4757; }
-        .comments-section { margin-top: 1rem; background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; }
-        .comment-item { border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0.5rem 0; font-size: 0.9rem; }
-        .comment-input { width: 70%; padding: 0.4rem; border-radius: 4px; border: 1px solid var(--border-color); background: #000; color: #fff; }
-        .btn-send { padding: 0.4rem 0.8rem; background: var(--accent-gold); border: none; border-radius: 4px; font-weight: bold; cursor: pointer; }
-        .contact-buttons { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
-        .btn-social { padding: 0.8rem 1.5rem; border-radius: 25px; text-decoration: none; font-weight: 700; color: #000; background: var(--accent-gold); display: inline-flex; align-items: center; gap: 0.5rem; }
-        .admin-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 200; padding: 2rem; }
-        .admin-content { background: var(--card-bg); max-width: 500px; margin: auto; padding: 2rem; border-radius: 12px; border: 1px solid var(--accent-gold); }
-        footer { text-align: center; padding: 2rem; background: #050507; border-top: 1px solid var(--border-color); color: var(--text-muted); margin-top: 3rem; }
+        :root { --gold: #d4af37; --dark: #0a0a0c; --card: #16161a; --text: #f0f0f0; }
+        body { background-color: var(--dark); color: var(--text); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+        header { background: #000; padding: 20px; border-bottom: 2px solid var(--gold); text-align: center; }
+        .logo { font-size: 26px; font-weight: bold; color: var(--gold); text-decoration: none; }
+        nav { margin-top: 15px; }
+        nav a { color: var(--text); margin: 0 10px; text-decoration: none; font-size: 16px; }
+        nav a:hover { color: var(--gold); }
+        .container { max-width: 800px; margin: 20px auto; padding: 20px; }
+        .profile-section { text-align: center; background: var(--card); padding: 30px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.2); }
+        .avatar-box { position: relative; width: 120px; height: 120px; margin: 0 auto 15px; }
+        .avatar { width: 100%; height: 100%; border-radius: 50%; background: var(--gold); color: #000; font-size: 40px; font-weight: bold; display: flex; align-items: center; justify-content: center; object-fit: cover; border: 3px solid var(--gold); }
+        .change-img-btn { position: absolute; bottom: 0; right: 0; background: var(--gold); border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; font-size: 16px; }
+        .bio { color: #ccc; margin: 15px 0; line-height: 1.6; }
+        .stats { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
+        .stat-badge { background: #222; padding: 8px 16px; border-radius: 20px; font-size: 14px; border: 1px solid var(--gold); }
+        .btn { display: inline-block; background: var(--gold); color: #000; padding: 12px 24px; border-radius: 25px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; margin: 5px; }
+        .btn-wa { background: #25D366; color: #fff; }
+        .btn-fb { background: #1877F2; color: #fff; }
+        .btn-tg { background: #0088cc; color: #fff; }
+        .btn-mail { background: var(--gold); color: #000; }
+        .post-card { background: var(--card); padding: 20px; border-radius: 12px; margin-top: 20px; border: 1px solid #333; }
+        .post-card img { max-width: 100%; border-radius: 8px; margin-top: 10px; }
+        .post-actions { display: flex; align-items: center; gap: 15px; margin-top: 15px; border-top: 1px solid #333; padding-top: 10px; }
+        .like-btn { background: none; border: none; color: #ff4757; font-size: 18px; cursor: pointer; }
+        .comments-box { margin-top: 15px; background: #0f0f12; padding: 10px; border-radius: 8px; }
+        .comment-input { width: 70%; padding: 8px; border-radius: 5px; border: 1px solid #444; background: #222; color: #fff; }
+        .new-post-box { background: var(--card); padding: 20px; border-radius: 12px; margin-top: 30px; border: 1px dashed var(--gold); }
+        .new-post-box input, .new-post-box textarea { width: 95%; margin-bottom: 10px; padding: 10px; background: #222; border: 1px solid #444; color: #fff; border-radius: 5px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="#" class="logo">Ammar Alazaza</a>
-        <nav>
-            <a href="#about">من أنا</a>
-            <a href="#posts">المقالات</a>
-            <a href="#contact">التواصل</a>
-            <a href="#" onclick="openAdmin()" style="color: var(--accent-gold);"><i class="fa-solid fa-lock"></i> لوحة التحكم</a>
-        </nav>
-    </header>
+<header>
+    <div class="logo">Ammar Alazaza</div>
+    <nav>
+        <a href="#about">من أنا</a>
+        <a href="#posts">المقالات</a>
+        <a href="#contact">التواصل</a>
+    </nav>
+</header>
 
-    <section class="hero">
-        <img src="https://ui-avatars.com/api/?name=Ammar+Alazaza&background=D4AF37&color=000&size=128" alt="Ammar Alazaza" class="avatar">
+<div class="container">
+    <div class="profile-section" id="about">
+        <div class="avatar-box">
+            <img id="avatar-img" class="avatar" src="" alt="AA" style="display:none;">
+            <div id="avatar-text" class="avatar">AA</div>
+            <button class="change-img-btn" onclick="document.getElementById('img-upload').click()">📷</button>
+            <input type="file" id="img-upload" accept="image/*" style="display:none;" onchange="updateAvatar(event)">
+        </div>
+
         <h1>عمار العزازه | Ammar Alazaza</h1>
-        <p>مرحباً بك في موقعي الشخصي المحترف. هنا أشارك اهتماماتي، مشاريعي، ورؤيتي التقنية والتطويرية.</p>
-        <div class="stats-bar">
-            <div><i class="fa-solid fa-eye" style="color: var(--accent-gold);"></i> الزيارات: <span id="visit-counter">1</span></div>
-            <div><i class="fa-solid fa-newspaper" style="color: var(--accent-gold);"></i> المقالات: <span id="posts-counter">1</span></div>
-        </div>
-    </section>
+        <p class="bio">مرحباً بك في موقعي الشخصي الرسمي. متخصص في البرمجة والتقنية والتداول الكمي، وأشارك هنا خبراتي، مشروعاتي البرمجية، ورؤيتي التقنية والتطويرية.</p>
 
-    <div class="container">
-        <input type="text" id="searchInput" class="search-box" onkeyup="searchPosts()" placeholder="ابحث في المقالات والمواضيع...">
-
-        <section id="about" style="margin-bottom: 3rem;">
-            <h2 class="section-title">من أنا</h2>
-            <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">
-                أنا عمار العزازه، مهتم بتطوير الحلول البرمجية، الابتكار الرقمي، وإدارة الأفكار التقنية. أهدف من خلال هذا الموقع لنشر المعرفة وتوثيق التحديات والمشاريع.
-            </p>
-        </section>
-
-        <section id="posts">
-            <h2 class="section-title">أحدث المقالات والمشاريع</h2>
-            <div class="posts-grid" id="postsContainer">
-                <article class="post-card">
-                    <h3>الانطلاقة الأولى لموقعي الشخصي</h3>
-                    <p style="color: var(--text-muted);">هذه هي المقالة الأولى التي أنشرها في موقعي الجديد المصمم بهوية ملكية عصرية.</p>
-                    <div class="post-actions">
-                        <button class="btn-like" onclick="toggleLike(this)"><i class="fa-regular fa-heart"></i> <span class="like-count">12</span> إعجاب</button>
-                        <span style="color: var(--text-muted); font-size: 0.8rem;">2026-11-03</span>
-                    </div>
-                    <div class="comments-section">
-                        <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--accent-gold);">التعليقات:</h4>
-                        <div class="comments-list">
-                            <div class="comment-item"><b>زائر:</b> بالتوفيق يا عمار، موقع فخم جداً!</div>
-                        </div>
-                        <div style="margin-top: 0.5rem; display: flex; gap: 0.3rem;">
-                            <input type="text" class="comment-input" placeholder="اكتب تعليقاً...">
-                            <button class="btn-send" onclick="addComment(this)">إرسال</button>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section id="contact" style="margin-top: 4rem; text-align: center;">
-            <h2 class="section-title">تواصل معي مباشرة</h2>
-            <div class="contact-buttons">
-                <a href="https://wa.me/" target="_blank" class="btn-social" style="background: #25D366; color: #fff;">
-                    <i class="fa-brands fa-whatsapp"></i> واتساب
-                </a>
-                <a href="mailto:example@gmail.com" class="btn-social">
-                    <i class="fa-solid fa-envelope"></i> البريد الإلكتروني
-                </a>
-            </div>
-        </section>
-    </div>
-
-    <!-- نافذة لوحة التحكم للمالك -->
-    <div class="admin-modal" id="adminModal">
-        <div class="admin-content">
-            <h2 style="color: var(--accent-gold); margin-bottom: 1rem;">لوحة إدارة المالك</h2>
-            <div id="loginForm">
-                <input type="password" id="adminPass" class="search-box" placeholder="أدخل كلمة المرور السريّة...">
-                <button class="btn-social" style="width: 100%; justify-content: center;" onclick="checkAdmin()">دخول</button>
-            </div>
-            <div id="adminPanel" style="display: none;">
-                <h3 style="margin-bottom: 0.5rem;">إضافة مقال جديد</h3>
-                <input type="text" id="newTitle" class="search-box" placeholder="عنوان المقال..." style="margin-bottom: 0.5rem;">
-                <textarea id="newContent" class="search-box" placeholder="محتوى المقال..." style="height: 100px; margin-bottom: 0.5rem;"></textarea>
-                <button class="btn-social" style="width: 100%; justify-content: center; margin-bottom: 1rem;" onclick="addPost()">نشر المقال</button>
-            </div>
-            <button onclick="closeAdmin()" style="margin-top: 1rem; background: none; border: none; color: #ff4757; cursor: pointer;">إغلاق</button>
+        <div class="stats">
+            <span class="stat-badge">👁 الزيارات: <span id="views-count">1</span></span>
+            <span class="stat-badge">📝 المقالات: <span id="posts-count">1</span></span>
         </div>
     </div>
 
-    <footer>
-        <p>جميع الحقوق محفوظة © 2026 | Ammar Alazaza</p>
-    </footer>
+    <div class="new-post-box">
+        <h3>إضافة منشور / مقال جديد</h3>
+        <input type="text" id="post-title" placeholder="عنوان المقال...">
+        <textarea id="post-content" rows="3" placeholder="أكتب محتوى المقال هنا..."></textarea>
+        <input type="file" id="post-image" accept="image/*">
+        <button class="btn" onclick="addNewPost()">نشر الآن</button>
+    </div>
 
-    <script>
-        // عداد الزيارات
-        let visits = localStorage.getItem('site_visits') || 1;
-        visits = parseInt(visits) + 1;
-        localStorage.setItem('site_visits', visits);
-        document.getElementById('visit-counter').innerText = visits;
-
-        // تفاعل الإعجابات
-        function toggleLike(btn) {
-            const icon = btn.querySelector('i');
-            const countSpan = btn.querySelector('.like-count');
-            let count = parseInt(countSpan.innerText);
-            if (icon.classList.contains('fa-regular')) {
-                icon.classList.remove('fa-regular'); icon.classList.add('fa-solid');
-                btn.classList.add('active'); countSpan.innerText = count + 1;
-            } else {
-                icon.classList.remove('fa-solid'); icon.classList.add('fa-regular');
-                btn.classList.remove('active'); countSpan.innerText = count - 1;
-            }
-        }
-
-        // إضافة تعليق
-        function addComment(btn) {
-            const input = btn.previousElementSibling;
-            if(!input.value.trim()) return;
-            const list = btn.parentElement.previousElementSibling;
-            const newComment = document.createElement('div');
-            newComment.className = 'comment-item';
-            newComment.innerHTML = `<b>زائر:</b> ${input.value}`;
-            list.appendChild(newComment);
-            input.value = '';
-        }
-
-        // محرك البحث
-        function searchPosts() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let posts = document.getElementsByClassName('post-card');
-            for (let post of posts) {
-                let title = post.getElementsByTagName('h3')[0].innerText.toLowerCase();
-                post.style.display = title.includes(input) ? "block" : "none";
-            }
-        }
-
-        // لوحة التحكم
-        function openAdmin() { document.getElementById('adminModal').style.display = 'flex'; }
-        function closeAdmin() { document.getElementById('adminModal').style.display = 'none'; }
-        function checkAdmin() {
-            if(document.getElementById('adminPass').value === '123456') {
-                document.getElementById('loginForm').style.display = 'none';
-                document.getElementById('adminPanel').style.display = 'block';
-            } else { alert('كلمة المرور غير صحيحة!'); }
-        }
-        function addPost() {
-            let title = document.getElementById('newTitle').value;
-            let content = document.getElementById('newContent').value;
-            if(!title || !content) return;
-            let container = document.getElementById('postsContainer');
-            let newPost = document.createElement('article');
-            newPost.className = 'post-card';
-            newPost.innerHTML = `
-                <h3>${title}</h3>
-                <p style="color: var(--text-muted);">${content}</p>
-                <div class="post-actions">
-                    <button class="btn-like" onclick="toggleLike(this)"><i class="fa-regular fa-heart"></i> <span class="like-count">0</span> إعجاب</button>
-                    <span style="color: var(--text-muted); font-size: 0.8rem;">الآن</span>
+    <div id="posts">
+        <div class="post-card">
+            <h3>أهلاً بكم في موقعي الرسمي الجديد</h3>
+            <p>يسعدني إطلاق هذا الموقع لمشاركة كل جديد معكم في مجالات التقنية والبرمجة والتداول.</p>
+            <div class="post-actions">
+                <button class="like-btn" onclick="addLike(this)">❤️ <span class="likes-num">12</span> إعجاب</button>
+            </div>
+            <div class="comments-box">
+                <h4>التعليقات:</h4>
+                <div class="comments-list">
+                    <p><strong>زائر:</strong> بالتوفيق يا عمار، موقع فخم جداً!</p>
                 </div>
-            `;
-            container.prepend(newPost);
-            closeAdmin();
+                <input type="text" class="comment-input" placeholder="اكتب تعليقاً...">
+                <button class="btn" style="padding: 8px 15px;" onclick="addComment(this)">إرسال</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-section" id="contact" style="margin-top: 30px;">
+        <h2>تواصل معي مباشرة</h2>
+        <p style="color:#aaa;">البريد الإلكتروني: ammaralazaza5@gmail.com</p>
+        <a href="https://www.facebook.com/share/1brTDoTJRK/" target="_blank" class="btn btn-fb">📘 فيسبوك</a>
+        <a href="https://t.me/AmanExApp" target="_blank" class="btn btn-tg">✈️ تلغرام</a>
+        <a href="https://wa.me/249912345678" target="_blank" class="btn btn-wa">💬 واتساب</a>
+        <a href="mailto:ammaralazaza5@gmail.com" class="btn btn-mail">✉️ البريد الإلكتروني</a>
+    </div>
+</div>
+
+<script>
+    function updateAvatar(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('avatar-img').src = e.target.result;
+                document.getElementById('avatar-img').style.display = 'block';
+                document.getElementById('avatar-text').style.display = 'none';
+            }
+            reader.readAsDataURL(file);
         }
-    </script>
+    }
+
+    function addLike(btn) {
+        let countSpan = btn.querySelector('.likes-num');
+        let count = parseInt(countSpan.innerText);
+        countSpan.innerText = count + 1;
+    }
+
+    function addComment(btn) {
+        let input = btn.previousElementSibling;
+        if (input.value.trim() !== "") {
+            let list = btn.parentElement.querySelector('.comments-list');
+            let p = document.createElement('p');
+            p.innerHTML = "<strong>زائر:</strong> " + input.value;
+            list.appendChild(p);
+            input.value = "";
+        }
+    }
+
+    function addNewPost() {
+        let title = document.getElementById('post-title').value;
+        let content = document.getElementById('post-content').value;
+        let imgInput = document.getElementById('post-image');
+        
+        if (!title || !content) { alert('يرجى كتابة العنوان والمحتوى'); return; }
+
+        let postDiv = document.createElement('div');
+        postDiv.className = 'post-card';
+        
+        let imgHtml = '';
+        if (imgInput.files && imgInput.files[0]) {
+            let imgUrl = URL.createObjectURL(imgInput.files[0]);
+            imgHtml = `<img src="${imgUrl}" alt="صورة المنشور">`;
+        }
+
+        postDiv.innerHTML = `
+            <h3>${title}</h3>
+            <p>${content}</p>
+            ${imgHtml}
+            <div class="post-actions">
+                <button class="like-btn" onclick="addLike(this)">❤️ <span class="likes-num">0</span> إعجاب</button>
+            </div>
+            <div class="comments-box">
+                <h4>التعليقات:</h4>
+                <div class="comments-list"></div>
+                <input type="text" class="comment-input" placeholder="اكتب تعليقاً...">
+                <button class="btn" style="padding: 8px 15px;" onclick="addComment(this)">إرسال</button>
+            </div>
+        `;
+
+        document.getElementById('posts').prepend(postDiv);
+        document.getElementById('post-title').value = '';
+        document.getElementById('post-content').value = '';
+        imgInput.value = '';
+        
+        let pCount = document.getElementById('posts-count');
+        pCount.innerText = parseInt(pCount.innerText) + 1;
+    }
+</script>
+
 </body>
 </html>
