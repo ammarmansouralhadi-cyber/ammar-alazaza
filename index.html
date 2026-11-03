@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عمار العزازه | Ammar Alazaza - منصة التداول الاحترافية</title>
+    <title>عمار العزازه | Ammar Alazaza - محفظة التداول الذكية</title>
     <style>
         :root {
             --bg-dark: #07050b;
@@ -28,14 +28,28 @@
         .top-bar { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 15px 20px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
         .clock-badge { color: var(--gold); font-size: 14px; font-weight: bold; background: rgba(212,175,55,0.1); padding: 6px 14px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.3); }
 
-        /* شريط الأخبار الحية من تريدنج فيو */
+        /* شريط الأخبار الحية */
         .tradingview-ticker-wrapper { margin-bottom: 20px; border-radius: 12px; overflow: hidden; border: 1px solid var(--card-border); }
+
+        /* نظام تسجيل الدخول والمحفظة */
+        .auth-wallet-section { background: var(--card-bg); border: 1px solid var(--purple); border-radius: 14px; padding: 22px; margin-bottom: 25px; box-shadow: 0 4px 25px var(--purple-glow); }
+        .auth-form input { width: 95%; padding: 10px; margin-bottom: 10px; background: var(--bg-dark); border: 1px solid var(--card-border); color: #fff; border-radius: 8px; }
+        .btn { background: var(--gold); color: #000; padding: 10px 22px; border-radius: 20px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; display: inline-block; margin: 5px; transition: 0.3s; }
+        .btn:hover { opacity: 0.9; transform: scale(1.02); }
+        .btn-secondary { background: var(--purple); color: #fff; }
+        .wallet-box { display: none; }
+        .wallet-card { background: #181328; border: 1px solid #322653; border-radius: 12px; padding: 15px; margin-top: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .wallet-balance { font-size: 24px; font-weight: bold; color: var(--gold); font-family: monospace; }
+
+        /* نافذة الإيداع والسحب المنبثقة */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: var(--card-bg); border: 1px solid var(--purple); padding: 25px; border-radius: 14px; width: 90%; max-width: 400px; text-align: right; }
+        .modal-content input { width: 95%; padding: 10px; margin: 10px 0; background: var(--bg-dark); border: 1px solid var(--card-border); color: #fff; border-radius: 8px; }
 
         /* لوحة الأسعار اللحظية الفخمة */
         .section-title { font-size: 16px; margin: 25px 0 12px 0; color: var(--gold); display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; }
         .binance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; }
         .binance-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 18px; position: relative; overflow: hidden; transition: 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-        .binance-card:hover { border-color: var(--purple); box-shadow: 0 8px 25px var(--purple-glow); transform: translateY(-2px); }
         .binance-card::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--purple); }
         .coin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
         .coin-name { font-weight: bold; font-size: 15px; color: var(--text-main); }
@@ -58,21 +72,10 @@
         .calc-field input, .calc-field select { width: 100%; padding: 10px; background: var(--bg-dark); border: 1px solid var(--card-border); color: #fff; border-radius: 8px; font-size: 14px; }
         .calc-result { background: #181328; padding: 14px; border-radius: 10px; text-align: center; font-size: 17px; font-weight: bold; color: var(--gold); margin-top: 12px; border: 1px solid #322653; }
 
-        /* تقرير الذكاء الاصطناعي */
-        .ai-report-box { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 20px; margin-top: 25px; }
-        .signal-card { background: #181328; border: 1px solid #322653; border-radius: 10px; padding: 14px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-        .badge-buy { background: var(--green); color: #000; padding: 4px 12px; border-radius: 6px; font-weight: bold; font-size: 12px; }
-
         .profile-section { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 25px; margin-top: 25px; text-align: center; }
-        .btn { background: var(--gold); color: #000; padding: 10px 22px; border-radius: 20px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; display: inline-block; margin: 5px; transition: 0.3s; }
-        .btn:hover { opacity: 0.9; transform: scale(1.02); }
         .btn-wa { background: #25D366; color: #fff; }
         .btn-fb { background: #1877F2; color: #fff; }
         .btn-tg { background: #0088cc; color: #fff; }
-        
-        .post-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 18px; margin-top: 15px; text-align: right; }
-        .new-post-box { background: var(--card-bg); border: 1px dashed var(--gold); border-radius: 14px; padding: 18px; margin-top: 25px; text-align: right; }
-        .new-post-box input, .new-post-box textarea { width: 95%; margin-bottom: 10px; padding: 10px; background: var(--bg-dark); border: 1px solid var(--card-border); color: #fff; border-radius: 8px; }
     </style>
 </head>
 <body>
@@ -80,10 +83,10 @@
 <header>
     <a href="#" class="logo">⚡ Ammar Alazaza Pro</a>
     <nav>
+        <a href="#auth-section">حساب الزائر</a>
         <a href="#binance-market">الأسواق</a>
         <a href="#live-chart">الشارت الحي</a>
         <a href="#futures-calc">الحاسبة</a>
-        <a href="#ai-reports">الذكاء الاصطناعي</a>
         <a href="#contact">التواصل</a>
     </nav>
 </header>
@@ -91,15 +94,14 @@
 <div class="container">
     <div class="top-bar">
         <div>
-            <h3 style="margin:0 0 3px 0; color:var(--gold);">منصة العزازه للتداول الكمي</h3>
-            <span style="font-size:12px; color:var(--text-muted);">تحليل فني متقدم وربط مباشر بالأسواق</span>
+            <h3 style="margin:0 0 3px 0; color:var(--gold);">منصة العزازه للتداول الكمي والمحافظ</h3>
+            <span style="font-size:12px; color:var(--text-muted);">نظام حسابات الزوار والمحفظة الفورية</span>
         </div>
         <div class="clock-badge" id="sudan-clock">🕒 جاري تحميل توقيت السودان...</div>
     </div>
 
-    <!-- شريط أخبار السوق المتحرك والحي من TradingView -->
+    <!-- شريط أخبار السوق المتحرك -->
     <div class="tradingview-ticker-wrapper">
-        <!-- TradingView Widget BEGIN -->
         <div class="tradingview-widget-container">
             <div class="tradingview-widget-container__widget"></div>
             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
@@ -108,8 +110,7 @@
                 { "proName": "BITSTAMP:BTCUSD", "title": "Bitcoin" },
                 { "proName": "BITSTAMP:ETHUSD", "title": "Ethereum" },
                 { "proName": "BINANCE:BNBUSDT", "title": "BNB" },
-                { "proName": "BINANCE:SOLUSDT", "title": "Solana" },
-                { "proName": "FX:EURUSD", "title": "EUR/USD" }
+                { "proName": "BINANCE:SOLUSDT", "title": "Solana" }
               ],
               "showSymbolLogo": true,
               "isTransparent": true,
@@ -119,10 +120,59 @@
             }
             </script>
         </div>
-        <!-- TradingView Widget END -->
     </div>
 
-    <!-- لوحة الأسعار اللحظية الفخمة -->
+    <!-- قسم تسجيل الزائر والمحفظة الرقمية الخاصة به -->
+    <div class="auth-wallet-section" id="auth-section">
+        <!-- نموذج تسجيل الدخول / إنشاء الحساب -->
+        <div id="auth-form-box">
+            <h3 style="margin-top:0; color:var(--gold);">🔐 بوابة دخول الزوار والمحفظة الرقمية</h3>
+            <p style="font-size:13px; color:var(--text-muted);">سجل اسم المستخدم وكلمة المرور الخاصة بك لفتح محفظتك الرقمية الفورية والإيداع والسحب.</p>
+            <div class="auth-form">
+                <input type="text" id="username-input" placeholder="اسم المستخدم (Username)...">
+                <input type="password" id="password-input" placeholder="كلمة المرور (Password)...">
+                <br>
+                <button class="btn" onclick="registerOrLogin()">تسجيل / دخول</button>
+                <button class="btn btn-secondary" onclick="forgotPassword()">نسيت كلمة المرور؟</button>
+            </div>
+        </div>
+
+        <!-- لوحة محفظة الزائر (تظهر بعد الدخول) -->
+        <div class="wallet-box" id="wallet-dashboard-box">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                <div>
+                    <h3 style="margin:0; color:var(--gold);">👤 مرحباً بك، <span id="display-user"></span></h3>
+                    <span style="font-size:12px; color:var(--text-muted);">حالة الحساب: نشط ومحمي عبر النظام</span>
+                </div>
+                <button class="btn btn-secondary" style="background:var(--red);" onclick="logout()">تسجيل الخروج</button>
+            </div>
+
+            <div class="wallet-card">
+                <div>
+                    <span style="font-size:13px; color:var(--text-muted);">رصيد محفظة USDT المتاح:</span>
+                    <div class="wallet-balance" id="usdt-balance">1,000.00 USDT</div>
+                </div>
+                <div>
+                    <button class="btn" onclick="openModal('deposit')">📥 إيداع (Deposit)</button>
+                    <button class="btn btn-secondary" onclick="openModal('withdraw')">📤 سحب (Withdraw)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة الإيداع والسحب المنبثقة -->
+    <div class="modal" id="wallet-modal">
+        <div class="modal-content">
+            <h3 id="modal-title" style="color:var(--gold); margin-top:0;">إيداع رصيد</h3>
+            <p id="modal-desc" style="font-size:12px; color:var(--text-muted);">أدخل المبلغ المطلوب:</p>
+            <input type="number" id="modal-amount" placeholder="المبلغ بالدولار (USDT)...">
+            <div id="modal-extra-info" style="font-size:11px; color:var(--text-muted); margin-bottom:10px;"></div>
+            <button class="btn" onclick="processTransaction()">تنفيذ العملية</button>
+            <button class="btn btn-secondary" onclick="closeModal()" style="background:#333;">إلغاء</button>
+        </div>
+    </div>
+
+    <!-- لوحة الأسعار المباشرة -->
     <div id="binance-market">
         <div class="section-title">📈 أسعار السوق الفورية المباشرة (تحديث بالثانية)</div>
         <div class="binance-grid">
@@ -132,7 +182,6 @@
                     <span id="btc-chg" class="coin-change price-up">+0.00%</span>
                 </div>
                 <div class="coin-price" id="btc-val">--.--</div>
-                <div style="font-size:11px; color:var(--text-muted);">أدنى/أعلى 24س: <span id="btc-range">--</span></div>
             </div>
             <div class="binance-card">
                 <div class="coin-header">
@@ -140,7 +189,6 @@
                     <span id="eth-chg" class="coin-change price-up">+0.00%</span>
                 </div>
                 <div class="coin-price" id="eth-val">--.--</div>
-                <div style="font-size:11px; color:var(--text-muted);">أدنى/أعلى 24س: <span id="eth-range">--</span></div>
             </div>
             <div class="binance-card">
                 <div class="coin-header">
@@ -148,7 +196,6 @@
                     <span id="bnb-chg" class="coin-change price-up">+0.00%</span>
                 </div>
                 <div class="coin-price" id="bnb-val">--.--</div>
-                <div style="font-size:11px; color:var(--text-muted);">أدنى/أعلى 24س: <span id="bnb-range">--</span></div>
             </div>
             <div class="binance-card">
                 <div class="coin-header">
@@ -156,76 +203,32 @@
                     <span id="sol-chg" class="coin-change price-up">+0.00%</span>
                 </div>
                 <div class="coin-price" id="sol-val">--.--</div>
-                <div style="font-size:11px; color:var(--text-muted);">أدنى/أعلى 24س: <span id="sol-range">--</span></div>
             </div>
         </div>
     </div>
 
-    <!-- الشارت الحي والتحليل التفاعلي Mطور -->
+    <!-- الشارت الحي -->
     <div class="chart-section" id="live-chart">
         <div class="section-title" style="margin-top:0;">📊 الشارت الحي والتحليل الفني التفاعلي (TradingView)</div>
         <div class="chart-toolbar">
             <button class="chart-btn active" onclick="changeChart('BINANCE:BTCUSDT', this)">BTC/USDT</button>
             <button class="chart-btn" onclick="changeChart('BINANCE:ETHUSDT', this)">ETH/USDT</button>
-            <button class="chart-btn" onclick="changeChart('BINANCE:BNBUSDT', this)">BNB/USDT</button>
-            <button class="chart-btn" onclick="changeChart('BINANCE:SOLUSDT', this)">SOL/USDT</button>
         </div>
-        <div class="chart-container" id="tradingview-container">
-            <iframe id="tv-iframe" src="https://s.tradingview.com/widgetembed/?symbol=BINANCE%3ABTCUSDT&interval=60&hidetoptoolbar=0&symboledit=1&saveimage=1&toolbarbg=f1f3f6&studies=[]&theme=dark&style=1&timezone=Africa%2FKhartoum&locale=ar" width="100%" height="100%" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+        <div class="chart-container">
+            <iframe id="tv-iframe" src="https://s.tradingview.com/widgetembed/?symbol=BINANCE%3ABTCUSDT&interval=60&hidetoptoolbar=0&symboledit=1&saveimage=1&theme=dark&style=1&timezone=Africa%2FKhartoum&locale=ar" width="100%" height="100%" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
         </div>
     </div>
 
-    <!-- حاسبة أرباح العقود الآجلة -->
+    <!-- حاسبة العقود الآجلة -->
     <div class="calculator-box" id="futures-calc">
         <h3 style="margin:0 0 12px 0; color:var(--gold);">🧮 حاسبة أرباح العقود الآجلة المتقدمة</h3>
         <div class="calc-grid">
-            <div class="calc-field">
-                <label>رأس المال (USDT)</label>
-                <input type="number" id="calc-capital" value="200" oninput="calculateFutures()">
-            </div>
-            <div class="calc-field">
-                <label>الرفع المالي (Leverage)</label>
-                <select id="calc-leverage" onchange="calculateFutures()">
-                    <option value="10">10x</option>
-                    <option value="15">15x</option>
-                    <option value="20" selected>20x</option>
-                    <option value="50">50x</option>
-                </select>
-            </div>
-            <div class="calc-field">
-                <label>سعر الدخول ($)</label>
-                <input type="number" id="calc-entry" value="65000" oninput="calculateFutures()">
-            </div>
-            <div class="calc-field">
-                <label>سعر الخروج / الهدف ($)</label>
-                <input type="number" id="calc-exit" value="67500" oninput="calculateFutures()">
-            </div>
+            <div class="calc-field"><label>رأس المال (USDT)</label><input type="number" id="calc-capital" value="200" oninput="calculateFutures()"></div>
+            <div class="calc-field"><label>الرفع المالي</label><select id="calc-leverage" onchange="calculateFutures()"><option value="10">10x</option><option value="20" selected>20x</option><option value="50">50x</option></select></div>
+            <div class="calc-field"><label>سعر الدخول</label><input type="number" id="calc-entry" value="65000" oninput="calculateFutures()"></div>
+            <div class="calc-field"><label>سعر الخروج</label><input type="number" id="calc-exit" value="67500" oninput="calculateFutures()"></div>
         </div>
-        <div class="calc-result" id="calc-result-box">
-            العائد المتوقع: +$153.85 (76.92%)
-        </div>
-    </div>
-
-    <!-- تقرير الذكاء الاصطناعي -->
-    <div class="ai-report-box" id="ai-reports">
-        <h3 style="margin:0 0 5px 0; color:var(--gold);">🤖 تقرير صفقات التداول عبر الذكاء الاصطناعي</h3>
-        <p style="font-size:12px; color:var(--text-muted); margin-bottom:15px;">رصد فني لحظي للتوافق عبر الأطر الزمنية المتعددة.</p>
-        <div id="ai-signals-list"></div>
-    </div>
-
-    <!-- نشر مقال -->
-    <div class="new-post-box">
-        <h3 style="margin-top:0; color:var(--gold);">📝 إضافة تحليل أو إشارة جديدة</h3>
-        <input type="text" id="post-title" placeholder="عنوان التحليل أو الزوج...">
-        <textarea id="post-content" rows="3" placeholder="تفاصيل الإشارة، الأهداف، ووقف الخسارة..."></textarea>
-        <button class="btn" onclick="addNewPost()">نشر في الموقع</button>
-    </div>
-
-    <div id="posts">
-        <div class="post-card">
-            <h3 style="margin-top:0; color:var(--gold);">🚀 إطلاق شريط الأخبار الحية للمنصة</h3>
-            <p style="color:#ccc;">تم إضافة شريط أخبار وتحديثات الأسواق المتحرك من TradingView لتعزيز فخامة المنصة.</p>
-        </div>
+        <div class="calc-result" id="calc-result-box">العائد المتوقع: +$153.85 (76.92%)</div>
     </div>
 
     <!-- التواصل -->
@@ -235,7 +238,6 @@
         <a href="https://www.facebook.com/share/1brTDoTJRK/" target="_blank" class="btn btn-fb">📘 فيسبوك</a>
         <a href="https://t.me/AmanExApp" target="_blank" class="btn btn-tg">✈️ تلغرام</a>
         <a href="https://wa.me/249912345678" target="_blank" class="btn btn-wa">💬 واتساب</a>
-        <a href="mailto:ammaralazaza5@gmail.com" class="btn">✉️ البريد الإلكتروني</a>
     </div>
 </div>
 
@@ -250,97 +252,130 @@
     setInterval(updateSudanClock, 1000);
     updateSudanClock();
 
-    // جلب الأسعار المباشرة بالسنتات والدقة الفائقة
+    // نظام تسجيل الحسابات واستعادة كلمة المرور
+    let currentUser = localStorage.getItem('ammar_crypto_user');
+    let currentBalance = parseFloat(localStorage.getItem('ammar_crypto_bal')) || 1000.00;
+
+    if (currentUser) {
+        showWalletDashboard(currentUser);
+    }
+
+    function registerOrLogin() {
+        let user = document.getElementById('username-input').value.trim();
+        let pass = document.getElementById('password-input').value.trim();
+        if (!user || !pass) { alert('يرجى إدخال اسم المستخدم وكلمة المرور'); return; }
+
+        localStorage.setItem('ammar_user_' + user, pass);
+        localStorage.setItem('ammar_crypto_user', user);
+        if(!localStorage.getItem('ammar_bal_' + user)) {
+            localStorage.setItem('ammar_bal_' + user, '1000.00');
+        }
+        
+        currentUser = user;
+        currentBalance = parseFloat(localStorage.getItem('ammar_bal_' + user));
+        showWalletDashboard(user);
+    }
+
+    function forgotPassword() {
+        let user = document.getElementById('username-input').value.trim();
+        if (!user) { alert('يرجى كتابة اسم المستخدم أولاً في خانة اسم المستخدم لاستعادة كلمة المرور'); return; }
+        
+        if (localStorage.getItem('ammar_user_' + user)) {
+            let newPass = 'Ammar@' + Math.floor(1000 + Math.random() * 9000);
+            localStorage.setItem('ammar_user_' + user, newPass);
+            alert(`تم استبدال كلمة المرور بنجاح!\nكلمة المرور الجديدة لحسابك (${user}) هي: ${newPass}\nيرجى الاحتفاظ بها وتسجيل الدخول من جديد.`);
+        } else {
+            alert('اسم المستخدم غير مسجل مسبقاً في النظام.');
+        }
+    }
+
+    function showWalletDashboard(user) {
+        document.getElementById('auth-form-box').style.display = 'none';
+        document.getElementById('wallet-dashboard-box').style.display = 'block';
+        document.getElementById('display-user').innerText = user;
+        document.getElementById('usdt-balance').innerText = currentBalance.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' USDT';
+    }
+
+    function logout() {
+        localStorage.removeItem('ammar_crypto_user');
+        location.reload();
+    }
+
+    // نافذة الإيداع والسحب
+    let activeModalType = '';
+    function openModal(type) {
+        activeModalType = type;
+        document.getElementById('wallet-modal').style.display = 'flex';
+        if(type === 'deposit') {
+            document.getElementById('modal-title').innerText = '📥 إيداع رصيد (USDT)';
+            document.getElementById('modal-desc').innerText = 'عنوان محفظتك للإيداع (ERC20 / TRC20): 0xAmmarCrypto...7A9';
+        } else {
+            document.getElementById('modal-title').innerText = '📤 سحب رصيد (Withdrawal)';
+            document.getElementById('modal-desc').innerText = 'أدخل عنوان المحفظة الخارجية والمبلغ المراد سحبه:';
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('wallet-modal').style.display = 'none';
+        document.getElementById('modal-amount').value = '';
+    }
+
+    function processTransaction() {
+        let amt = parseFloat(document.getElementById('modal-amount').value);
+        if(!amt || amt <= 0) { alert('يرجى إدخال مبلغ صحيح'); return; }
+
+        if(activeModalType === 'deposit') {
+            currentBalance += amt;
+            alert(`تم إيداع مبلغ $${amt} بنجاح في محفظتك!`);
+        } else {
+            if(amt > currentBalance) { alert('عفواً، رصيدك المتاح غير كافٍ للسحب!'); return; }
+            currentBalance -= amt;
+            alert(`تم تقديم طلب سحب مبلغ $${amt} بنجاح. سيتم تحويله إلى عنوانك قريباً.`);
+        }
+
+        localStorage.setItem('ammar_bal_' + currentUser, currentBalance);
+        document.getElementById('usdt-balance').innerText = currentBalance.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' USDT';
+        closeModal();
+    }
+
+    // أسعار بينانس
     async function fetchBinanceLive() {
         try {
             let res = await fetch('https://api.binance.com/api/v3/ticker/24hr');
             let data = await res.json();
             let symbols = {'BTCUSDT': 'btc', 'ETHUSDT': 'eth', 'BNBUSDT': 'bnb', 'SOLUSDT': 'sol'};
-            
             data.forEach(item => {
                 if (symbols[item.symbol]) {
                     let p = symbols[item.symbol];
                     let price = parseFloat(item.lastPrice);
                     let change = parseFloat(item.priceChangePercent);
-                    let low = parseFloat(item.lowPrice).toFixed(2);
-                    let high = parseFloat(item.highPrice).toFixed(2);
-                    
-                    let formattedPrice = price >= 10 ? price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : price.toFixed(4);
-                    
-                    document.getElementById(p + '-val').innerText = '$' + formattedPrice;
-                    document.getElementById(p + '-range').innerText = `${low} - ${high}`;
-                    
+                    let fmt = price >= 10 ? price.toLocaleString('en-US', {minimumFractionDigits: 2}) : price.toFixed(4);
+                    document.getElementById(p + '-val').innerText = '$' + fmt;
                     let chgEl = document.getElementById(p + '-chg');
                     chgEl.innerText = (change >= 0 ? '+' : '') + change.toFixed(2) + '%';
                     chgEl.className = 'coin-change ' + (change >= 0 ? 'price-up' : 'price-down');
                 }
             });
-        } catch (e) {
-            console.log('Error');
-        }
+        } catch (e) {}
     }
     fetchBinanceLive();
     setInterval(fetchBinanceLive, 1000);
 
-    // تغيير الشارت الحي بناءً على اختيار الزائر
-    function changeChart(symbol, btn) {
+    function changeChart(sym, btn) {
         document.querySelectorAll('.chart-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        
-        let iframe = document.getElementById('tv-iframe');
-        iframe.src = `https://s.tradingview.com/widgetembed/?symbol=${symbol}&interval=60&hidetoptoolbar=0&symboledit=1&saveimage=1&toolbarbg=f1f3f6&studies=[]&theme=dark&style=1&timezone=Africa%2FKhartoum&locale=ar`;
+        document.getElementById('tv-iframe').src = `https://s.tradingview.com/widgetembed/?symbol=${sym}&interval=60&hidetoptoolbar=0&symboledit=1&saveimage=1&theme=dark&style=1&timezone=Africa%2FKhartoum&locale=ar`;
     }
 
-    // حاسبة أرباح العقود الآجلة
     function calculateFutures() {
-        let capital = parseFloat(document.getElementById('calc-capital').value) || 0;
-        let leverage = parseFloat(document.getElementById('calc-leverage').value) || 1;
+        let cap = parseFloat(document.getElementById('calc-capital').value) || 0;
+        let lev = parseFloat(document.getElementById('calc-leverage').value) || 1;
         let entry = parseFloat(document.getElementById('calc-entry').value) || 1;
         let exit = parseFloat(document.getElementById('calc-exit').value) || 1;
-        
-        let priceDiffPercent = ((exit - entry) / entry);
-        let profit = capital * leverage * priceDiffPercent;
-        let profitPercent = (profit / capital) * 100;
-        
-        let resBox = document.getElementById('calc-result-box');
-        if (profit >= 0) {
-            resBox.style.color = 'var(--green)';
-            resBox.innerText = `العائد المتوقع: +$${profit.toFixed(2)} (+${profitPercent.toFixed(2)}%)`;
-        } else {
-            resBox.style.color = 'var(--red)';
-            resBox.innerText = `الخسارة المتوقعة: -$${Math.abs(profit.toFixed(2))} (${profitPercent.toFixed(2)}%)`;
-        }
-    }
-    calculateFutures();
-
-    // تقرير الذكاء الاصطناعي
-    function generateAISignals() {
-        let btcPriceEl = document.getElementById('btc-val').innerText;
-        let container = document.getElementById('ai-signals-list');
-        container.innerHTML = `
-            <div class="signal-card">
-                <div>
-                    <strong>BTC/USDT - صفقة شراء طويلة (Long)</strong>
-                    <div style="font-size:12px; color:var(--text-muted);">السعر الحالي: ${btcPriceEl} | توافق الأطر: صاعد على فريم الساعة و4 ساعات</div>
-                </div>
-                <div><span class="badge-buy">جودة الإشارة: 96%</span></div>
-            </div>
-        `;
-    }
-    setTimeout(generateAISignals, 1500);
-
-    // نشر مقال
-    function addNewPost() {
-        let title = document.getElementById('post-title').value;
-        let content = document.getElementById('post-content').value;
-        if (!title || !content) { alert('يرجى كتابة العنوان والمحتوى'); return; }
-
-        let postDiv = document.createElement('div');
-        postDiv.className = 'post-card';
-        postDiv.innerHTML = `<h3 style="margin-top:0; color:var(--gold);">${title}</h3><p style="color:#ccc;">${content}</p><span style="font-size:11px; color:var(--text-muted);">بواسطة عمار العزازه</span>`;
-        document.getElementById('posts').prepend(postDiv);
-        document.getElementById('post-title').value = '';
-        document.getElementById('post-content').value = '';
+        let profit = cap * lev * ((exit - entry) / entry);
+        let res = document.getElementById('calc-result-box');
+        res.style.color = profit >= 0 ? 'var(--green)' : 'var(--red)';
+        res.innerText = `العائد المتوقع: ${profit >= 0 ? '+' : ''}$${profit.toFixed(2)}`;
     }
 </script>
 
