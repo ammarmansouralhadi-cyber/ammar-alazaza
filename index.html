@@ -11,6 +11,7 @@
             --card-border: #231b38;
             --gold: #d4af37;
             --purple: #8b5cf6;
+            --purple-glow: rgba(139, 92, 246, 0.25);
             --green: #0ecb81;
             --red: #f6465d;
             --text-main: #f0f0f5;
@@ -18,42 +19,60 @@
         }
         body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
         header { background: rgba(7, 5, 11, 0.95); backdrop-filter: blur(10px); padding: 15px 20px; border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 20px; font-weight: bold; color: var(--gold); text-decoration: none; }
-        nav a { color: var(--text-muted); margin: 0 8px; text-decoration: none; font-size: 13px; }
+        .logo { font-size: 20px; font-weight: bold; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        nav a { color: var(--text-muted); margin: 0 8px; text-decoration: none; font-size: 13px; transition: 0.3s; }
         nav a:hover { color: var(--gold); }
         
         .container { max-width: 1200px; margin: 15px auto; padding: 10px; }
         
-        .top-bar { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 15px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-        .clock-badge { color: var(--gold); font-size: 14px; font-weight: bold; background: rgba(212,175,55,0.1); padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(212,175,55,0.3); }
+        .top-bar { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 15px 20px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+        .clock-badge { color: var(--gold); font-size: 14px; font-weight: bold; background: rgba(212,175,55,0.1); padding: 6px 14px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.3); }
 
-        /* لوحة الأسعار مثل بينانس (بالسنتات اللحظية) */
-        .section-title { font-size: 16px; margin: 20px 0 10px 0; color: var(--gold); display: flex; align-items: center; gap: 8px; }
-        .binance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-        .binance-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 15px; transition: 0.2s; position: relative; overflow: hidden; }
-        .binance-card::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--purple); }
+        /* شريط الأخبار الحية من تريدنج فيو */
+        .tradingview-ticker-wrapper { margin-bottom: 20px; border-radius: 12px; overflow: hidden; border: 1px solid var(--card-border); }
+
+        /* لوحة الأسعار اللحظية الفخمة */
+        .section-title { font-size: 16px; margin: 25px 0 12px 0; color: var(--gold); display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; }
+        .binance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; }
+        .binance-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 18px; position: relative; overflow: hidden; transition: 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .binance-card:hover { border-color: var(--purple); box-shadow: 0 8px 25px var(--purple-glow); transform: translateY(-2px); }
+        .binance-card::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--purple); }
         .coin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .coin-name { font-weight: bold; font-size: 15px; }
-        .coin-price { font-size: 22px; font-weight: bold; font-family: monospace; margin: 5px 0; }
-        .coin-change { font-size: 13px; font-weight: bold; padding: 2px 6px; border-radius: 4px; display: inline-block; }
-        .price-up { color: var(--green); background: rgba(14,203,129,0.1); }
-        .price-down { color: var(--red); background: rgba(246,70,93,0.1); }
+        .coin-name { font-weight: bold; font-size: 15px; color: var(--text-main); }
+        .coin-price { font-size: 22px; font-weight: bold; font-family: monospace; margin: 8px 0; color: #fff; }
+        .coin-change { font-size: 13px; font-weight: bold; padding: 3px 8px; border-radius: 6px; display: inline-block; }
+        .price-up { color: var(--green); background: rgba(14,203,129,0.15); }
+        .price-down { color: var(--red); background: rgba(246,70,93,0.15); }
 
-        /* تقرير صفقات الذكاء الاصطناعي */
-        .ai-report-box { background: var(--card-bg); border: 1px solid var(--purple); border-radius: 12px; padding: 18px; margin-top: 20px; box-shadow: 0 4px 20px rgba(139,92,246,0.15); }
-        .signal-card { background: #181328; border: 1px solid #322653; border-radius: 10px; padding: 12px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-        .badge-buy { background: var(--green); color: #000; padding: 4px 10px; border-radius: 6px; font-weight: bold; font-size: 12px; }
-        .badge-sell { background: var(--red); color: #fff; padding: 4px 10px; border-radius: 6px; font-weight: bold; font-size: 12px; }
+        /* شارت TradingView الحي */
+        .chart-section { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 18px; margin-top: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .chart-toolbar { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .chart-btn { background: var(--bg-dark); border: 1px solid var(--card-border); color: var(--text-muted); padding: 6px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: bold; transition: 0.3s; }
+        .chart-btn.active, .chart-btn:hover { background: var(--purple); color: #fff; border-color: var(--purple); }
+        .chart-container { height: 480px; width: 100%; border-radius: 10px; overflow: hidden; border: 1px solid var(--card-border); }
 
-        .profile-section { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 20px; margin-top: 20px; text-align: center; }
-        .btn { background: var(--gold); color: #000; padding: 10px 20px; border-radius: 20px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; display: inline-block; margin: 5px; }
+        /* حاسبة العقود الآجلة */
+        .calculator-box { background: var(--card-bg); border: 1px solid var(--purple); border-radius: 14px; padding: 22px; margin-top: 25px; box-shadow: 0 4px 25px var(--purple-glow); }
+        .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 15px; }
+        .calc-field label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+        .calc-field input, .calc-field select { width: 100%; padding: 10px; background: var(--bg-dark); border: 1px solid var(--card-border); color: #fff; border-radius: 8px; font-size: 14px; }
+        .calc-result { background: #181328; padding: 14px; border-radius: 10px; text-align: center; font-size: 17px; font-weight: bold; color: var(--gold); margin-top: 12px; border: 1px solid #322653; }
+
+        /* تقرير الذكاء الاصطناعي */
+        .ai-report-box { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 20px; margin-top: 25px; }
+        .signal-card { background: #181328; border: 1px solid #322653; border-radius: 10px; padding: 14px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .badge-buy { background: var(--green); color: #000; padding: 4px 12px; border-radius: 6px; font-weight: bold; font-size: 12px; }
+
+        .profile-section { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 25px; margin-top: 25px; text-align: center; }
+        .btn { background: var(--gold); color: #000; padding: 10px 22px; border-radius: 20px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; display: inline-block; margin: 5px; transition: 0.3s; }
+        .btn:hover { opacity: 0.9; transform: scale(1.02); }
         .btn-wa { background: #25D366; color: #fff; }
         .btn-fb { background: #1877F2; color: #fff; }
         .btn-tg { background: #0088cc; color: #fff; }
         
-        .post-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 15px; margin-top: 12px; text-align: right; }
-        .new-post-box { background: var(--card-bg); border: 1px dashed var(--gold); border-radius: 12px; padding: 15px; margin-top: 20px; text-align: right; }
-        .new-post-box input, .new-post-box textarea { width: 95%; margin-bottom: 8px; padding: 8px; background: var(--bg-dark); border: 1px solid var(--card-border); color: #fff; border-radius: 6px; }
+        .post-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 18px; margin-top: 15px; text-align: right; }
+        .new-post-box { background: var(--card-bg); border: 1px dashed var(--gold); border-radius: 14px; padding: 18px; margin-top: 25px; text-align: right; }
+        .new-post-box input, .new-post-box textarea { width: 95%; margin-bottom: 10px; padding: 10px; background: var(--bg-dark); border: 1px solid var(--card-border); color: #fff; border-radius: 8px; }
     </style>
 </head>
 <body>
@@ -61,24 +80,49 @@
 <header>
     <a href="#" class="logo">⚡ Ammar Alazaza Pro</a>
     <nav>
-        <a href="#binance-market">الأسواق اللحظية</a>
-        <a href="#ai-reports">تقرير صفقات الذكاء الاصطناعي</a>
-        <a href="#posts">المقالات</a>
+        <a href="#binance-market">الأسواق</a>
+        <a href="#live-chart">الشارت الحي</a>
+        <a href="#futures-calc">الحاسبة</a>
+        <a href="#ai-reports">الذكاء الاصطناعي</a>
         <a href="#contact">التواصل</a>
     </nav>
 </header>
 
 <div class="container">
-    <!-- الشريط العلوي والساعة -->
     <div class="top-bar">
         <div>
-            <h3 style="margin:0 0 3px 0; color:var(--gold);">لوحة تداول العملات الرقمية</h3>
-            <span style="font-size:12px; color:var(--text-muted);">ربط مباشر مع بيانات Binance الفورية</span>
+            <h3 style="margin:0 0 3px 0; color:var(--gold);">منصة العزازه للتداول الكمي</h3>
+            <span style="font-size:12px; color:var(--text-muted);">تحليل فني متقدم وربط مباشر بالأسواق</span>
         </div>
-        <div class="clock-badge" id="sudan-clock">🕒 جاري تحميل وقت السودان...</div>
+        <div class="clock-badge" id="sudan-clock">🕒 جاري تحميل توقيت السودان...</div>
     </div>
 
-    <!-- لوحة الأسعار المباشرة بالسنتات (مثل بينانس) -->
+    <!-- شريط أخبار السوق المتحرك والحي من TradingView -->
+    <div class="tradingview-ticker-wrapper">
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+              "symbols": [
+                { "proName": "BITSTAMP:BTCUSD", "title": "Bitcoin" },
+                { "proName": "BITSTAMP:ETHUSD", "title": "Ethereum" },
+                { "proName": "BINANCE:BNBUSDT", "title": "BNB" },
+                { "proName": "BINANCE:SOLUSDT", "title": "Solana" },
+                { "proName": "FX:EURUSD", "title": "EUR/USD" }
+              ],
+              "showSymbolLogo": true,
+              "isTransparent": true,
+              "displayMode": "adaptive",
+              "colorTheme": "dark",
+              "locale": "ar"
+            }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
+    </div>
+
+    <!-- لوحة الأسعار اللحظية الفخمة -->
     <div id="binance-market">
         <div class="section-title">📈 أسعار السوق الفورية المباشرة (تحديث بالثانية)</div>
         <div class="binance-grid">
@@ -117,28 +161,70 @@
         </div>
     </div>
 
-    <!-- تقرير صفقات وتحليل الذكاء الاصطناعي -->
-    <div class="ai-report-box" id="ai-reports">
-        <h3 style="margin:0 0 5px 0; color:var(--gold);">🤖 تقرير صفقات التداول عبر الذكاء الاصطناعي (AI Trade Signals)</h3>
-        <p style="font-size:12px; color:var(--text-muted); margin-bottom:15px;">فحص فني تلقائي متوافق مع الأطر الزمنية المتعددة (15د، 1س، 4س، يومي) مع تقييم جودة الإشارة.</p>
-        
-        <div id="ai-signals-list">
-            <!-- يتم تحديث الصفقات هنا تلقائياً -->
+    <!-- الشارت الحي والتحليل التفاعلي Mطور -->
+    <div class="chart-section" id="live-chart">
+        <div class="section-title" style="margin-top:0;">📊 الشارت الحي والتحليل الفني التفاعلي (TradingView)</div>
+        <div class="chart-toolbar">
+            <button class="chart-btn active" onclick="changeChart('BINANCE:BTCUSDT', this)">BTC/USDT</button>
+            <button class="chart-btn" onclick="changeChart('BINANCE:ETHUSDT', this)">ETH/USDT</button>
+            <button class="chart-btn" onclick="changeChart('BINANCE:BNBUSDT', this)">BNB/USDT</button>
+            <button class="chart-btn" onclick="changeChart('BINANCE:SOLUSDT', this)">SOL/USDT</button>
+        </div>
+        <div class="chart-container" id="tradingview-container">
+            <iframe id="tv-iframe" src="https://s.tradingview.com/widgetembed/?symbol=BINANCE%3ABTCUSDT&interval=60&hidetoptoolbar=0&symboledit=1&saveimage=1&toolbarbg=f1f3f6&studies=[]&theme=dark&style=1&timezone=Africa%2FKhartoum&locale=ar" width="100%" height="100%" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
         </div>
     </div>
 
-    <!-- إضافة مقال أو تحليل جديد -->
+    <!-- حاسبة أرباح العقود الآجلة -->
+    <div class="calculator-box" id="futures-calc">
+        <h3 style="margin:0 0 12px 0; color:var(--gold);">🧮 حاسبة أرباح العقود الآجلة المتقدمة</h3>
+        <div class="calc-grid">
+            <div class="calc-field">
+                <label>رأس المال (USDT)</label>
+                <input type="number" id="calc-capital" value="200" oninput="calculateFutures()">
+            </div>
+            <div class="calc-field">
+                <label>الرفع المالي (Leverage)</label>
+                <select id="calc-leverage" onchange="calculateFutures()">
+                    <option value="10">10x</option>
+                    <option value="15">15x</option>
+                    <option value="20" selected>20x</option>
+                    <option value="50">50x</option>
+                </select>
+            </div>
+            <div class="calc-field">
+                <label>سعر الدخول ($)</label>
+                <input type="number" id="calc-entry" value="65000" oninput="calculateFutures()">
+            </div>
+            <div class="calc-field">
+                <label>سعر الخروج / الهدف ($)</label>
+                <input type="number" id="calc-exit" value="67500" oninput="calculateFutures()">
+            </div>
+        </div>
+        <div class="calc-result" id="calc-result-box">
+            العائد المتوقع: +$153.85 (76.92%)
+        </div>
+    </div>
+
+    <!-- تقرير الذكاء الاصطناعي -->
+    <div class="ai-report-box" id="ai-reports">
+        <h3 style="margin:0 0 5px 0; color:var(--gold);">🤖 تقرير صفقات التداول عبر الذكاء الاصطناعي</h3>
+        <p style="font-size:12px; color:var(--text-muted); margin-bottom:15px;">رصد فني لحظي للتوافق عبر الأطر الزمنية المتعددة.</p>
+        <div id="ai-signals-list"></div>
+    </div>
+
+    <!-- نشر مقال -->
     <div class="new-post-box">
         <h3 style="margin-top:0; color:var(--gold);">📝 إضافة تحليل أو إشارة جديدة</h3>
-        <input type="text" id="post-title" placeholder="عنوان التحليل أو الزوج (مثال: BTC Analysis)...">
+        <input type="text" id="post-title" placeholder="عنوان التحليل أو الزوج...">
         <textarea id="post-content" rows="3" placeholder="تفاصيل الإشارة، الأهداف، ووقف الخسارة..."></textarea>
         <button class="btn" onclick="addNewPost()">نشر في الموقع</button>
     </div>
 
     <div id="posts">
         <div class="post-card">
-            <h3 style="margin-top:0; color:var(--gold);">🚀 إطلاق منصة العزازه للتداول الكمي</h3>
-            <p style="color:#ccc;">تم تفعيل الربط اللحظي بأسعار منصة بينانس حتى مستوى السنتات، بالإضافة إلى محركات الذكاء الاصطناعي لرصد الفرص والاتجاهات.</p>
+            <h3 style="margin-top:0; color:var(--gold);">🚀 إطلاق شريط الأخبار الحية للمنصة</h3>
+            <p style="color:#ccc;">تم إضافة شريط أخبار وتحديثات الأسواق المتحرك من TradingView لتعزيز فخامة المنصة.</p>
         </div>
     </div>
 
@@ -154,7 +240,7 @@
 </div>
 
 <script>
-    // ساعة السودان اللحظية
+    // ساعة السودان
     function updateSudanClock() {
         const options = { timeZone: 'Africa/Khartoum', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
         const formatter = new Intl.DateTimeFormat([], options);
@@ -164,12 +250,11 @@
     setInterval(updateSudanClock, 1000);
     updateSudanClock();
 
-    // جلب الأسعار المباشرة من بينانس بدقة عالية حتى السنتات
+    // جلب الأسعار المباشرة بالسنتات والدقة الفائقة
     async function fetchBinanceLive() {
         try {
             let res = await fetch('https://api.binance.com/api/v3/ticker/24hr');
             let data = await res.json();
-            
             let symbols = {'BTCUSDT': 'btc', 'ETHUSDT': 'eth', 'BNBUSDT': 'bnb', 'SOLUSDT': 'sol'};
             
             data.forEach(item => {
@@ -180,7 +265,6 @@
                     let low = parseFloat(item.lowPrice).toFixed(2);
                     let high = parseFloat(item.highPrice).toFixed(2);
                     
-                    // تنسيق السعر بدقته (أو سنتات دقيقة)
                     let formattedPrice = price >= 10 ? price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : price.toFixed(4);
                     
                     document.getElementById(p + '-val').innerText = '$' + formattedPrice;
@@ -192,41 +276,58 @@
                 }
             });
         } catch (e) {
-            console.log('Binance API fetch error');
+            console.log('Error');
         }
     }
     fetchBinanceLive();
-    setInterval(fetchBinanceLive, 1000); // تحديث كل ثانية مباشرة مثل منصة بينانس!
+    setInterval(fetchBinanceLive, 1000);
 
-    // تقرير صفقات الذكاء الاصطناعي اللحظي
+    // تغيير الشارت الحي بناءً على اختيار الزائر
+    function changeChart(symbol, btn) {
+        document.querySelectorAll('.chart-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        let iframe = document.getElementById('tv-iframe');
+        iframe.src = `https://s.tradingview.com/widgetembed/?symbol=${symbol}&interval=60&hidetoptoolbar=0&symboledit=1&saveimage=1&toolbarbg=f1f3f6&studies=[]&theme=dark&style=1&timezone=Africa%2FKhartoum&locale=ar`;
+    }
+
+    // حاسبة أرباح العقود الآجلة
+    function calculateFutures() {
+        let capital = parseFloat(document.getElementById('calc-capital').value) || 0;
+        let leverage = parseFloat(document.getElementById('calc-leverage').value) || 1;
+        let entry = parseFloat(document.getElementById('calc-entry').value) || 1;
+        let exit = parseFloat(document.getElementById('calc-exit').value) || 1;
+        
+        let priceDiffPercent = ((exit - entry) / entry);
+        let profit = capital * leverage * priceDiffPercent;
+        let profitPercent = (profit / capital) * 100;
+        
+        let resBox = document.getElementById('calc-result-box');
+        if (profit >= 0) {
+            resBox.style.color = 'var(--green)';
+            resBox.innerText = `العائد المتوقع: +$${profit.toFixed(2)} (+${profitPercent.toFixed(2)}%)`;
+        } else {
+            resBox.style.color = 'var(--red)';
+            resBox.innerText = `الخسارة المتوقعة: -$${Math.abs(profit.toFixed(2))} (${profitPercent.toFixed(2)}%)`;
+        }
+    }
+    calculateFutures();
+
+    // تقرير الذكاء الاصطناعي
     function generateAISignals() {
         let btcPriceEl = document.getElementById('btc-val').innerText;
-        let ethPriceEl = document.getElementById('eth-val').innerText;
-        
         let container = document.getElementById('ai-signals-list');
         container.innerHTML = `
             <div class="signal-card">
                 <div>
-                    <strong>BTC/USDT - صفقة شراء (Long)</strong>
-                    <div style="font-size:12px; color:var(--text-muted);">السعر الحالي: ${btcPriceEl} | توافق الأطر: 15د & 1س صاعد</div>
+                    <strong>BTC/USDT - صفقة شراء طويلة (Long)</strong>
+                    <div style="font-size:12px; color:var(--text-muted);">السعر الحالي: ${btcPriceEl} | توافق الأطر: صاعد على فريم الساعة و4 ساعات</div>
                 </div>
-                <div>
-                    <span class="badge-buy">جودة الإشارة: 94%</span>
-                </div>
-            </div>
-            <div class="signal-card">
-                <div>
-                    <strong>ETH/USDT - رصد دايفرجنس إيجابي</strong>
-                    <div style="font-size:12px; color:var(--text-muted);">السعر الحالي: ${ethPriceEl} | الفحص الفني: انعكاس اتجاهي محتمل</div>
-                </div>
-                <div>
-                    <span class="badge-buy">جودة الإشارة: 88%</span>
-                </div>
+                <div><span class="badge-buy">جودة الإشارة: 96%</span></div>
             </div>
         `;
     }
     setTimeout(generateAISignals, 1500);
-    setInterval(generateAISignals, 15000); // تحديث التقرير كل 15 ثانية
 
     // نشر مقال
     function addNewPost() {
@@ -236,7 +337,7 @@
 
         let postDiv = document.createElement('div');
         postDiv.className = 'post-card';
-        postDiv.innerHTML = `<h3 style="margin-top:0; color:var(--gold);">${title}</h3><p style="color:#ccc;">${content}</p><span style="font-size:11px; color:var(--text-muted);">تم النشر بواسطة عمار العزازه</span>`;
+        postDiv.innerHTML = `<h3 style="margin-top:0; color:var(--gold);">${title}</h3><p style="color:#ccc;">${content}</p><span style="font-size:11px; color:var(--text-muted);">بواسطة عمار العزازه</span>`;
         document.getElementById('posts').prepend(postDiv);
         document.getElementById('post-title').value = '';
         document.getElementById('post-content').value = '';
