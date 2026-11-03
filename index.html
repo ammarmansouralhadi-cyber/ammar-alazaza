@@ -13,11 +13,26 @@
         nav a { color: var(--text); margin: 0 10px; text-decoration: none; font-size: 16px; }
         nav a:hover { color: var(--gold); }
         .container { max-width: 800px; margin: 20px auto; padding: 20px; }
-        .profile-section { text-align: center; background: var(--card); padding: 30px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.2); }
+        .profile-section { text-align: center; background: var(--card); padding: 30px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.2); margin-bottom: 20px; }
         .avatar-box { position: relative; width: 120px; height: 120px; margin: 0 auto 15px; }
         .avatar { width: 100%; height: 100%; border-radius: 50%; background: var(--gold); color: #000; font-size: 40px; font-weight: bold; display: flex; align-items: center; justify-content: center; object-fit: cover; border: 3px solid var(--gold); }
         .change-img-btn { position: absolute; bottom: 0; right: 0; background: var(--gold); border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; font-size: 16px; }
         .bio { color: #ccc; margin: 15px 0; line-height: 1.6; }
+        
+        /* ساعة السودان */
+        .clock-box { background: #111; border: 1px solid var(--gold); padding: 12px; border-radius: 8px; margin: 15px auto; display: inline-block; font-size: 18px; font-weight: bold; color: var(--gold); }
+
+        /* لوحة العملات الرقمية */
+        .crypto-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 15px; }
+        .crypto-card { background: #111; padding: 12px; border-radius: 8px; border: 1px solid #333; text-align: center; }
+        .crypto-name { font-size: 14px; color: #aaa; }
+        .crypto-price { font-size: 16px; font-weight: bold; color: var(--gold); margin-top: 5px; }
+
+        /* مساعد الذكاء الاصطناعي والبحث */
+        .ai-assistant-box { background: #111; border: 1px solid var(--gold); padding: 20px; border-radius: 12px; margin-bottom: 20px; text-align: right; }
+        .ai-input { width: 75%; padding: 10px; background: #222; border: 1px solid #444; color: #fff; border-radius: 5px; }
+        .ai-response { margin-top: 10px; color: var(--gold); font-size: 15px; background: #1a1a20; padding: 10px; border-radius: 6px; display: none; }
+
         .stats { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
         .stat-badge { background: #222; padding: 8px 16px; border-radius: 20px; font-size: 14px; border: 1px solid var(--gold); }
         .btn { display: inline-block; background: var(--gold); color: #000; padding: 12px 24px; border-radius: 25px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; margin: 5px; }
@@ -41,12 +56,15 @@
     <div class="logo">Ammar Alazaza</div>
     <nav>
         <a href="#about">من أنا</a>
+        <a href="#crypto-section">الأسواق والعملات</a>
+        <a href="#ai-section">مساعد الذكاء الاصطناعي</a>
         <a href="#posts">المقالات</a>
         <a href="#contact">التواصل</a>
     </nav>
 </header>
 
 <div class="container">
+    <!-- نبذة شخصية وساعة السودان -->
     <div class="profile-section" id="about">
         <div class="avatar-box">
             <img id="avatar-img" class="avatar" src="" alt="AA" style="display:none;">
@@ -58,10 +76,47 @@
         <h1>عمار العزازه | Ammar Alazaza</h1>
         <p class="bio">مرحباً بك في موقعي الشخصي الرسمي. متخصص في البرمجة والتقنية والتداول الكمي، وأشارك هنا خبراتي، مشروعاتي البرمجية، ورؤيتي التقنية والتطويرية.</p>
 
+        <!-- ساعة بتوقيت السودان -->
+        <div class="clock-box" id="sudan-clock">
+            ⏰ بتوقيت السودان: جاري التحميل...
+        </div>
+
         <div class="stats">
             <span class="stat-badge">👁 الزيارات: <span id="views-count">1</span></span>
             <span class="stat-badge">📝 المقالات: <span id="posts-count">1</span></span>
         </div>
+    </div>
+
+    <!-- لوحة تداول العملات الرقمية المباشرة -->
+    <div class="profile-section" id="crypto-section">
+        <h2>📊 لوحة أسعار العملات الرقمية (السوق المباشر)</h2>
+        <div class="crypto-grid" id="crypto-board">
+            <div class="crypto-card">
+                <div class="crypto-name">Bitcoin (BTC)</div>
+                <div class="crypto-price" id="btc-price">جاري التحديث...</div>
+            </div>
+            <div class="crypto-card">
+                <div class="crypto-name">Ethereum (ETH)</div>
+                <div class="crypto-price" id="eth-price">جاري التحديث...</div>
+            </div>
+            <div class="crypto-card">
+                <div class="crypto-name">Binance Coin (BNB)</div>
+                <div class="crypto-price" id="bnb-price">جاري التحديث...</div>
+            </div>
+            <div class="crypto-card">
+                <div class="crypto-name">Solana (SOL)</div>
+                <div class="crypto-price" id="sol-price">جاري التحديث...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- مساعد الذكاء الاصطناعي للزوار -->
+    <div class="ai-assistant-box" id="ai-section">
+        <h3>🤖 مساعد الذكاء الاصطناعي (اسأل عمار أو ابحث في الموقع)</h3>
+        <p style="color:#aaa; font-size: 14px;">اسأل عن التداول، البرمجة، أو تواصل عمار:</p>
+        <input type="text" id="ai-query" class="ai-input" placeholder="اكتب سؤالك هنا (مثلاً: من هو عمار؟ أو ما هي خدماته؟)...">
+        <button class="btn" onclick="askAI()" style="padding: 10px 18px;">إرسال</button>
+        <div id="ai-response" class="ai-response"></div>
     </div>
 
     <div class="new-post-box">
@@ -101,6 +156,55 @@
 </div>
 
 <script>
+    // ساعة بتوقيت السودان
+    function updateSudanClock() {
+        const options = { timeZone: 'Africa/Khartoum', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+        const formatter = new Intl.DateTimeFormat([], options);
+        const dateStr = new Date().toLocaleDateString('ar-SD', { timeZone: 'Africa/Khartoum', weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' });
+        document.getElementById('sudan-clock').innerText = `🕒 ${dateStr} - ${formatter.format(new Date())}`;
+    }
+    setInterval(updateSudanClock, 1000);
+    updateSudanClock();
+
+    // جلب أسعار العملات الرقمية الحية
+    async function fetchCryptoPrices() {
+        try {
+            let response = await fetch('https://api.binance.com/api/v3/ticker/price');
+            let data = await response.json();
+            let prices = {};
+            data.forEach(item => { prices[item.symbol] = parseFloat(item.price).toFixed(2); });
+
+            if(prices['BTCUSDT']) document.getElementById('btc-price').innerText = '$' + prices['BTCUSDT'];
+            if(prices['ETHUSDT']) document.getElementById('eth-price').innerText = '$' + prices['ETHUSDT'];
+            if(prices['BNBUSDT']) document.getElementById('bnb-price').innerText = '$' + prices['BNBUSDT'];
+            if(prices['SOLUSDT']) document.getElementById('sol-price').innerText = '$' + prices['SOLUSDT'];
+        } catch (e) {
+            console.log('Error fetching crypto');
+        }
+    }
+    fetchCryptoPrices();
+    setInterval(fetchCryptoPrices, 10000);
+
+    // مساعد الذكاء الاصطناعي للزوار
+    function askAI() {
+        let q = document.getElementById('ai-query').value.trim().toLowerCase();
+        let resBox = document.getElementById('ai-response');
+        if (!q) { alert('الرجاء كتابة سؤال'); return; }
+
+        let answer = "أهلاً بك! عمار العزازه خبير تقنية وتداول رقمي. يمكنك التواصل معه مباشرة عبر أزرار التواصل أسفل الموقع أو متابعة مقالاته وحالة السوق هنا.";
+        
+        if (q.includes('من هو') || q.includes('عمار')) {
+            answer = "عمار العزازه هو مطور ومحترف في التداول الكمي والتقنية والبرمجة، وصاحب هذا الموقع الرسمي.";
+        } else if (q.includes('تواصل') || q.includes('واتساب') || q.includes('ايميل')) {
+            answer = "يمكنك التواصل مع عمار عبر البريد: ammaralazaza5@gmail.com أو عبر أزرار واتساب وفيسبوك وتلغرام أسفل الصفحة.";
+        } else if (q.includes('سعر') || q.includes('بتكوين') || q.includes('عملات')) {
+            answer = "يمكنك متابعة أسعار العملات الرقمية الحية مباشرة في لوحة السوق المباشر الموجودة أعلى هذه الخانة والمحدثة عبر منصة Binance.";
+        }
+
+        resBox.innerText = "🤖 رد المساعد الذكي: " + answer;
+        resBox.style.display = 'block';
+    }
+
     function updateAvatar(event) {
         const file = event.target.files[0];
         if (file) {
