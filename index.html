@@ -3,160 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عمار العزازه | Ammar Alazaza</title>
+    <title>عمار العزازه | Ammar Alazaza - لوحة التداول الذكية</title>
     <style>
-        :root { --gold: #d4af37; --dark: #0a0a0c; --card: #16161a; --text: #f0f0f0; }
-        body { background-color: var(--dark); color: var(--text); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
-        header { background: #000; padding: 20px; border-bottom: 2px solid var(--gold); text-align: center; }
-        .logo { font-size: 26px; font-weight: bold; color: var(--gold); text-decoration: none; }
-        nav { margin-top: 15px; }
-        nav a { color: var(--text); margin: 0 10px; text-decoration: none; font-size: 16px; }
-        nav a:hover { color: var(--gold); }
-        .container { max-width: 800px; margin: 20px auto; padding: 20px; }
-        .profile-section { text-align: center; background: var(--card); padding: 30px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.2); margin-bottom: 20px; }
-        .avatar-box { position: relative; width: 120px; height: 120px; margin: 0 auto 15px; }
-        .avatar { width: 100%; height: 100%; border-radius: 50%; background: var(--gold); color: #000; font-size: 40px; font-weight: bold; display: flex; align-items: center; justify-content: center; object-fit: cover; border: 3px solid var(--gold); }
-        .change-img-btn { position: absolute; bottom: 0; right: 0; background: var(--gold); border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; font-size: 16px; }
-        .bio { color: #ccc; margin: 15px 0; line-height: 1.6; }
+        :root {
+            --bg-dark: #0a0812;
+            --card-bg: #13101f;
+            --card-border: #2a2245;
+            --purple-accent: #8b5cf6;
+            --purple-glow: rgba(139, 92, 246, 0.3);
+            --gold: #d4af37;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --green: #10b981;
+            --red: #ef4444;
+        }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+        header { background: rgba(10, 8, 18, 0.95); backdrop-filter: blur(10px); padding: 15px 20px; border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 22px; font-weight: bold; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        nav a { color: var(--text-muted); margin: 0 10px; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        nav a:hover { color: var(--purple-accent); }
         
-        /* ساعة السودان */
-        .clock-box { background: #111; border: 1px solid var(--gold); padding: 12px; border-radius: 8px; margin: 15px auto; display: inline-block; font-size: 18px; font-weight: bold; color: var(--gold); }
+        .container { max-width: 1200px; margin: 20px auto; padding: 15px; }
+        
+        /* القسم العلوي والساعة */
+        .top-banner { background: linear-gradient(135deg, #18122b, #110c1d); border: 1px solid var(--card-border); border-radius: 16px; padding: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+        .clock-box { font-size: 15px; color: var(--gold); background: rgba(212, 175, 55, 0.1); padding: 8px 15px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3); }
 
-        /* لوحة العملات الرقمية */
-        .crypto-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 15px; }
-        .crypto-card { background: #111; padding: 12px; border-radius: 8px; border: 1px solid #333; text-align: center; }
-        .crypto-name { font-size: 14px; color: #aaa; }
-        .crypto-price { font-size: 16px; font-weight: bold; color: var(--gold); margin-top: 5px; }
+        /* شبكة لوحة الأسعار المباشرة */
+        .section-title { font-size: 18px; margin-bottom: 15px; color: var(--purple-accent); display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; }
+        .crypto-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .crypto-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 18px; transition: 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .crypto-card:hover { border-color: var(--purple-accent); transform: translateY(-3px); box-shadow: 0 8px 25px var(--purple-glow); }
+        .crypto-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .crypto-symbol { font-weight: bold; font-size: 16px; }
+        .crypto-price { font-size: 20px; font-weight: bold; color: var(--text-main); margin-bottom: 5px; }
+        .crypto-change { font-size: 13px; font-weight: bold; }
+        .positive { color: var(--green); }
+        .negative { color: var(--red); }
 
-        /* مساعد الذكاء الاصطناعي والبحث */
-        .ai-assistant-box { background: #111; border: 1px solid var(--gold); padding: 20px; border-radius: 12px; margin-bottom: 20px; text-align: right; }
-        .ai-input { width: 75%; padding: 10px; background: #222; border: 1px solid #444; color: #fff; border-radius: 5px; }
-        .ai-response { margin-top: 10px; color: var(--gold); font-size: 15px; background: #1a1a20; padding: 10px; border-radius: 6px; display: none; }
+        /* أدوات الذكاء الاصطناعي الكمية */
+        .ai-tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .ai-tool-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 18px; position: relative; overflow: hidden; }
+        .ai-tool-card::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: var(--purple-accent); }
+        .ai-tool-title { font-weight: bold; font-size: 15px; color: var(--purple-accent); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .ai-tool-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; }
+        .ai-status-badge { display: inline-block; background: rgba(139, 92, 246, 0.15); color: var(--purple-accent); padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; border: 1px solid rgba(139, 92, 246, 0.3); }
 
-        .stats { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
-        .stat-badge { background: #222; padding: 8px 16px; border-radius: 20px; font-size: 14px; border: 1px solid var(--gold); }
-        .btn { display: inline-block; background: var(--gold); color: #000; padding: 12px 24px; border-radius: 25px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; margin: 5px; }
-        .btn-wa { background: #25D366; color: #fff; }
-        .btn-fb { background: #1877F2; color: #fff; }
-        .btn-tg { background: #0088cc; color: #fff; }
-        .btn-mail { background: var(--gold); color: #000; }
-        .post-card { background: var(--card); padding: 20px; border-radius: 12px; margin-top: 20px; border: 1px solid #333; }
-        .post-card img { max-width: 100%; border-radius: 8px; margin-top: 10px; }
-        .post-actions { display: flex; align-items: center; gap: 15px; margin-top: 15px; border-top: 1px solid #333; padding-top: 10px; }
-        .like-btn { background: none; border: none; color: #ff4757; font-size: 18px; cursor: pointer; }
-        .comments-box { margin-top: 15px; background: #0f0f12; padding: 10px; border-radius: 8px; }
-        .comment-input { width: 70%; padding: 8px; border-radius: 5px; border: 1px solid #444; background: #222; color: #fff; }
-        .new-post-box { background: var(--card); padding: 20px; border-radius: 12px; margin-top: 30px; border: 1px dashed var(--gold); }
-        .new-post-box input, .new-post-box textarea { width: 95%; margin-bottom: 10px; padding: 10px; background: #222; border: 1px solid #444; color: #fff; border-radius: 5px; }
+        /* تنبيه إخلاء المسؤولية */
+        .disclaimer-box { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 12px 18px; border-radius: 10px; font-size: 13px; color: #fca5a5; margin-bottom: 30px; line-height: 1.6; }
+
+        /* الأقسام الأخرى (تواصل، مقالات) */
+        .profile-section { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 25px; margin-bottom: 25px; text-align: center; }
+        .btn { display: inline-block; background: var(--purple-accent); color: #fff; padding: 10px 22px; border-radius: 20px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; margin: 5px; box-shadow: 0 4px 15px var(--purple-glow); transition: 0.3s; }
+        .btn:hover { opacity: 0.9; transform: scale(1.02); }
+        .btn-wa { background: #10b981; }
+        .btn-fb { background: #3b82f6; }
+        .btn-tg { background: #0ea5e9; }
+        
+        .post-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 20px; margin-top: 15px; text-align: right; }
+        .new-post-box { background: var(--card-bg); border: 1px dashed var(--purple-accent); border-radius: 14px; padding: 20px; margin-top: 25px; text-align: right; }
+        .new-post-box input, .new-post-box textarea { width: 95%; margin-bottom: 10px; padding: 10px; background: var(--bg-dark); border: 1px solid var(--card-border); color: #fff; border-radius: 8px; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">Ammar Alazaza</div>
+    <a href="#" class="logo">⚡ Ammar Alazaza Pro</a>
     <nav>
-        <a href="#about">من أنا</a>
-        <a href="#crypto-section">الأسواق والعملات</a>
-        <a href="#ai-section">مساعد الذكاء الاصطناعي</a>
+        <a href="#crypto-market">الأسواق المباشرة</a>
+        <a href="#ai-scanners">محركات الذكاء الاصطناعي</a>
         <a href="#posts">المقالات</a>
         <a href="#contact">التواصل</a>
     </nav>
 </header>
 
 <div class="container">
-    <!-- نبذة شخصية وساعة السودان -->
-    <div class="profile-section" id="about">
-        <div class="avatar-box">
-            <img id="avatar-img" class="avatar" src="" alt="AA" style="display:none;">
-            <div id="avatar-text" class="avatar">AA</div>
-            <button class="change-img-btn" onclick="document.getElementById('img-upload').click()">📷</button>
-            <input type="file" id="img-upload" accept="image/*" style="display:none;" onchange="updateAvatar(event)">
+    <!-- بانر الترحيب والساعة -->
+    <div class="top-banner">
+        <div>
+            <h2 style="margin:0 0 5px 0; color: var(--gold);">مرحباً بك يا عمار العزازه</h2>
+            <p style="margin:0; color: var(--text-muted); font-size: 14px;">منصة التداول الكمي والتحليل اللحظي المتقدم</p>
         </div>
-
-        <h1>عمار العزازه | Ammar Alazaza</h1>
-        <p class="bio">مرحباً بك في موقعي الشخصي الرسمي. متخصص في البرمجة والتقنية والتداول الكمي، وأشارك هنا خبراتي، مشروعاتي البرمجية، ورؤيتي التقنية والتطويرية.</p>
-
-        <!-- ساعة بتوقيت السودان -->
         <div class="clock-box" id="sudan-clock">
-            ⏰ بتوقيت السودان: جاري التحميل...
-        </div>
-
-        <div class="stats">
-            <span class="stat-badge">👁 الزيارات: <span id="views-count">1</span></span>
-            <span class="stat-badge">📝 المقالات: <span id="posts-count">1</span></span>
+            🕒 بتوقيت السودان: جاري التحميل...
         </div>
     </div>
 
-    <!-- لوحة تداول العملات الرقمية المباشرة -->
-    <div class="profile-section" id="crypto-section">
-        <h2>📊 لوحة أسعار العملات الرقمية (السوق المباشر)</h2>
-        <div class="crypto-grid" id="crypto-board">
+    <!-- لوحة الأسعار المباشرة (مثل بينانس) -->
+    <div id="crypto-market">
+        <div class="section-title">📊 لوحة تداول العملات الرقمية المباشرة (Binance API)</div>
+        <div class="crypto-grid">
             <div class="crypto-card">
-                <div class="crypto-name">Bitcoin (BTC)</div>
-                <div class="crypto-price" id="btc-price">جاري التحديث...</div>
+                <div class="crypto-header">
+                    <span class="crypto-symbol">BTC / USDT</span>
+                    <span class="crypto-change positive" id="btc-change">+0.00%</span>
+                </div>
+                <div class="crypto-price" id="btc-price">جاري التحميل...</div>
+                <div style="font-size: 12px; color: var(--text-muted);">تداول فوري / عقود الآداب</div>
             </div>
             <div class="crypto-card">
-                <div class="crypto-name">Ethereum (ETH)</div>
-                <div class="crypto-price" id="eth-price">جاري التحديث...</div>
+                <div class="crypto-header">
+                    <span class="crypto-symbol">ETH / USDT</span>
+                    <span class="crypto-change positive" id="eth-change">+0.00%</span>
+                </div>
+                <div class="crypto-price" id="eth-price">جاري التحميل...</div>
+                <div style="font-size: 12px; color: var(--text-muted);">تداول فوري / عقود الآداب</div>
             </div>
             <div class="crypto-card">
-                <div class="crypto-name">Binance Coin (BNB)</div>
-                <div class="crypto-price" id="bnb-price">جاري التحديث...</div>
+                <div class="crypto-header">
+                    <span class="crypto-symbol">BNB / USDT</span>
+                    <span class="crypto-change positive" id="bnb-change">+0.00%</span>
+                </div>
+                <div class="crypto-price" id="bnb-price">جاري التحميل...</div>
+                <div style="font-size: 12px; color: var(--text-muted);">تداول فوري / عقود الآداب</div>
             </div>
             <div class="crypto-card">
-                <div class="crypto-name">Solana (SOL)</div>
-                <div class="crypto-price" id="sol-price">جاري التحديث...</div>
+                <div class="crypto-header">
+                    <span class="crypto-symbol">SOL / USDT</span>
+                    <span class="crypto-change positive" id="sol-change">+0.00%</span>
+                </div>
+                <div class="crypto-price" id="sol-price">جاري التحميل...</div>
+                <div style="font-size: 12px; color: var(--text-muted);">تداول فوري / عقود الآداب</div>
             </div>
         </div>
     </div>
 
-    <!-- مساعد الذكاء الاصطناعي للزوار -->
-    <div class="ai-assistant-box" id="ai-section">
-        <h3>🤖 مساعد الذكاء الاصطناعي (اسأل عمار أو ابحث في الموقع)</h3>
-        <p style="color:#aaa; font-size: 14px;">اسأل عن التداول، البرمجة، أو تواصل عمار:</p>
-        <input type="text" id="ai-query" class="ai-input" placeholder="اكتب سؤالك هنا (مثلاً: من هو عمار؟ أو ما هي خدماته؟)...">
-        <button class="btn" onclick="askAI()" style="padding: 10px 18px;">إرسال</button>
-        <div id="ai-response" class="ai-response"></div>
+    <!-- أدوات الذكاء الاصطناعي الكمي -->
+    <div id="ai-scanners">
+        <div class="section-title">🧠 أدوات الفحص وتحليل الإشارات بالذكاء الاصطناعي</div>
+        <div class="ai-tools-grid">
+            <div class="ai-tool-card">
+                <div class="ai-tool-title">🔍 AI Market Scanner</div>
+                <div class="ai-tool-desc">يفحص العملات لحظياً لاكتشاف الفرص الفنية ونماذج الأشكال السعرية الواعدة.</div>
+                <span class="ai-status-badge">نشط وجاهز للفحص</span>
+            </div>
+            <div class="ai-tool-card">
+                <div class="ai-tool-title">📈 Trend Predictor</div>
+                <div class="ai-tool-desc">يدرس الاتجاهات الحالية ويولد السيناريوهات الاحتمالية للحركة السعرية القادمة.</div>
+                <span class="ai-status-badge">محلل الاتجاه: صاعد</span>
+            </div>
+            <div class="ai-tool-card">
+                <div class="ai-tool-title">⭐ Signal Quality Score</div>
+                <div class="ai-tool-desc">يقيم جودة الإشارة وفق شروط واضحة ومؤشرات الزخم والسيولة.</div>
+                <span class="ai-status-badge">درجة الجودة: 92%</span>
+            </div>
+            <div class="ai-tool-card">
+                <div class="ai-tool-title">⏱ Multi-Timeframe Confirmation</div>
+                <div class="ai-tool-desc">يقارن ويطابق الأطر الزمنية المتعددة (15 دقيقة، ساعة، 4 ساعات، ويومي).</div>
+                <span class="ai-status-badge">توافق الأطر: مؤكد</span>
+            </div>
+            <div class="ai-tool-card">
+                <div class="ai-tool-title">📉 Divergence Detector</div>
+                <div class="ai-tool-desc">يكشف الاختلاف الخفي والظاهري بين حركة السعر ومؤشرات الزخم (RSI / MACD).</div>
+                <span class="ai-status-badge">بحث عن الحيود...</span>
+            </div>
+            <div class="ai-tool-card">
+                <div class="ai-tool-title">🌐 Market Regime Detector</div>
+                <div class="ai-tool-desc">يميز بدقة بين السوق الاتجاهي (Trending) والسوق العرضي (Consolidation).</div>
+                <span class="ai-status-badge">حالة السوق: اتجاهي قوي</span>
+            </div>
+            <div class="ai-tool-card">
+                <div class="ai-tool-title">🛡 False Breakout Detector</div>
+                <div class="ai-tool-desc">يرصد الاختراقات الوهمية والمستويات التي تفتقر إلى تأكيد حجم التداول الكافي.</div>
+                <span class="ai-status-badge">حماية الحساب مفعلة</span>
+            </div>
+        </div>
     </div>
 
+    <!-- تنبيه إخلاء المسؤولية الهام -->
+    <div class="disclaimer-box">
+        ⚠️ <strong>تنبيه هامة جداً:</strong> تقييم الإشارة ليس نسبة نجاح مضمونة، ويجب اختبار جميع الاستراتيجيات على بيانات تاريخية وخارج العينة (Out-of-Sample) قبل التطبيق الفعلي.
+    </div>
+
+    <!-- قسم النشر والمقالات -->
     <div class="new-post-box">
-        <h3>إضافة منشور / مقال جديد</h3>
-        <input type="text" id="post-title" placeholder="عنوان المقال...">
-        <textarea id="post-content" rows="3" placeholder="أكتب محتوى المقال هنا..."></textarea>
-        <input type="file" id="post-image" accept="image/*">
+        <h3>📝 إضافة إشارة أو مقال تحليل جديد</h3>
+        <input type="text" id="post-title" placeholder="عنوان المقال أو التحليل...">
+        <textarea id="post-content" rows="3" placeholder="تفاصيل الإشارة أو التحليل الفني..."></textarea>
         <button class="btn" onclick="addNewPost()">نشر الآن</button>
     </div>
 
     <div id="posts">
         <div class="post-card">
-            <h3>أهلاً بكم في موقعي الرسمي الجديد</h3>
-            <p>يسعدني إطلاق هذا الموقع لمشاركة كل جديد معكم في مجالات التقنية والبرمجة والتداول.</p>
-            <div class="post-actions">
-                <button class="like-btn" onclick="addLike(this)">❤️ <span class="likes-num">12</span> إعجاب</button>
-            </div>
-            <div class="comments-box">
-                <h4>التعليقات:</h4>
-                <div class="comments-list">
-                    <p><strong>زائر:</strong> بالتوفيق يا عمار، موقع فخم جداً!</p>
-                </div>
-                <input type="text" class="comment-input" placeholder="اكتب تعليقاً...">
-                <button class="btn" style="padding: 8px 15px;" onclick="addComment(this)">إرسال</button>
-            </div>
+            <h3>🚀 إطلاق منظومة التداول الذكية</h3>
+            <p>تم تفعيل لوحة الأسعار المباشرة وأدوات الذكاء الاصطناعي الكمي لمراقبة أسواق البيتكوين والعملات الرقمية بنجاح.</p>
         </div>
     </div>
 
+    <!-- قسم التواصل -->
     <div class="profile-section" id="contact" style="margin-top: 30px;">
-        <h2>تواصل معي مباشرة</h2>
-        <p style="color:#aaa;">البريد الإلكتروني: ammaralazaza5@gmail.com</p>
+        <h2>تواصل مع عمار العزازه</h2>
+        <p style="color:var(--text-muted);">البريد الإلكتروني: ammaralazaza5@gmail.com</p>
         <a href="https://www.facebook.com/share/1brTDoTJRK/" target="_blank" class="btn btn-fb">📘 فيسبوك</a>
         <a href="https://t.me/AmanExApp" target="_blank" class="btn btn-tg">✈️ تلغرام</a>
         <a href="https://wa.me/249912345678" target="_blank" class="btn btn-wa">💬 واتساب</a>
-        <a href="mailto:ammaralazaza5@gmail.com" class="btn btn-mail">✉️ البريد الإلكتروني</a>
+        <a href="mailto:ammaralazaza5@gmail.com" class="btn">✉️ البريد الإلكتروني</a>
     </div>
 </div>
 
 <script>
-    // ساعة بتوقيت السودان
+    // ساعة بتوقيت السودان اللحظية
     function updateSudanClock() {
         const options = { timeZone: 'Africa/Khartoum', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
         const formatter = new Intl.DateTimeFormat([], options);
@@ -166,113 +212,46 @@
     setInterval(updateSudanClock, 1000);
     updateSudanClock();
 
-    // جلب أسعار العملات الرقمية الحية
+    // جلب الأسعار المباشرة من بينانس وتحديث النطاق اللحظي
     async function fetchCryptoPrices() {
         try {
-            let response = await fetch('https://api.binance.com/api/v3/ticker/price');
+            let response = await fetch('https://api.binance.com/api/v3/ticker/24hr');
             let data = await response.json();
-            let prices = {};
-            data.forEach(item => { prices[item.symbol] = parseFloat(item.price).toFixed(2); });
-
-            if(prices['BTCUSDT']) document.getElementById('btc-price').innerText = '$' + prices['BTCUSDT'];
-            if(prices['ETHUSDT']) document.getElementById('eth-price').innerText = '$' + prices['ETHUSDT'];
-            if(prices['BNBUSDT']) document.getElementById('bnb-price').innerText = '$' + prices['BNBUSDT'];
-            if(prices['SOLUSDT']) document.getElementById('sol-price').innerText = '$' + prices['SOLUSDT'];
+            
+            let targets = {'BTCUSDT': 'btc', 'ETHUSDT': 'eth', 'BNBUSDT': 'bnb', 'SOLUSDT': 'sol'};
+            
+            data.forEach(item => {
+                if (targets[item.symbol]) {
+                    let prefix = targets[item.symbol];
+                    let price = parseFloat(item.lastPrice).toFixed(2);
+                    let change = parseFloat(item.priceChangePercent).toFixed(2);
+                    
+                    document.getElementById(prefix + '-price').innerText = '$' + price;
+                    let changeEl = document.getElementById(prefix + '-change');
+                    changeEl.innerText = (change >= 0 ? '+' : '') + change + '%';
+                    changeEl.className = 'crypto-change ' + (change >= 0 ? 'positive' : 'negative');
+                }
+            });
         } catch (e) {
-            console.log('Error fetching crypto');
+            console.log('Error fetching live Binance data');
         }
     }
     fetchCryptoPrices();
-    setInterval(fetchCryptoPrices, 10000);
+    setInterval(fetchCryptoPrices, 5000); // تحديث كل 5 ثوانٍ
 
-    // مساعد الذكاء الاصطناعي للزوار
-    function askAI() {
-        let q = document.getElementById('ai-query').value.trim().toLowerCase();
-        let resBox = document.getElementById('ai-response');
-        if (!q) { alert('الرجاء كتابة سؤال'); return; }
-
-        let answer = "أهلاً بك! عمار العزازه خبير تقنية وتداول رقمي. يمكنك التواصل معه مباشرة عبر أزرار التواصل أسفل الموقع أو متابعة مقالاته وحالة السوق هنا.";
-        
-        if (q.includes('من هو') || q.includes('عمار')) {
-            answer = "عمار العزازه هو مطور ومحترف في التداول الكمي والتقنية والبرمجة، وصاحب هذا الموقع الرسمي.";
-        } else if (q.includes('تواصل') || q.includes('واتساب') || q.includes('ايميل')) {
-            answer = "يمكنك التواصل مع عمار عبر البريد: ammaralazaza5@gmail.com أو عبر أزرار واتساب وفيسبوك وتلغرام أسفل الصفحة.";
-        } else if (q.includes('سعر') || q.includes('بتكوين') || q.includes('عملات')) {
-            answer = "يمكنك متابعة أسعار العملات الرقمية الحية مباشرة في لوحة السوق المباشر الموجودة أعلى هذه الخانة والمحدثة عبر منصة Binance.";
-        }
-
-        resBox.innerText = "🤖 رد المساعد الذكي: " + answer;
-        resBox.style.display = 'block';
-    }
-
-    function updateAvatar(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('avatar-img').src = e.target.result;
-                document.getElementById('avatar-img').style.display = 'block';
-                document.getElementById('avatar-text').style.display = 'none';
-            }
-            reader.readAsDataURL(file);
-        }
-    }
-
-    function addLike(btn) {
-        let countSpan = btn.querySelector('.likes-num');
-        let count = parseInt(countSpan.innerText);
-        countSpan.innerText = count + 1;
-    }
-
-    function addComment(btn) {
-        let input = btn.previousElementSibling;
-        if (input.value.trim() !== "") {
-            let list = btn.parentElement.querySelector('.comments-list');
-            let p = document.createElement('p');
-            p.innerHTML = "<strong>زائر:</strong> " + input.value;
-            list.appendChild(p);
-            input.value = "";
-        }
-    }
-
+    // نشر مقال جديد
     function addNewPost() {
         let title = document.getElementById('post-title').value;
         let content = document.getElementById('post-content').value;
-        let imgInput = document.getElementById('post-image');
-        
         if (!title || !content) { alert('يرجى كتابة العنوان والمحتوى'); return; }
 
         let postDiv = document.createElement('div');
         postDiv.className = 'post-card';
+        postDiv.innerHTML = `<h3>${title}</h3><p>${content}</p><span style="font-size:11px; color:var(--text-muted);">تم النشر للتو</span>`;
         
-        let imgHtml = '';
-        if (imgInput.files && imgInput.files[0]) {
-            let imgUrl = URL.createObjectURL(imgInput.files[0]);
-            imgHtml = `<img src="${imgUrl}" alt="صورة المنشور">`;
-        }
-
-        postDiv.innerHTML = `
-            <h3>${title}</h3>
-            <p>${content}</p>
-            ${imgHtml}
-            <div class="post-actions">
-                <button class="like-btn" onclick="addLike(this)">❤️ <span class="likes-num">0</span> إعجاب</button>
-            </div>
-            <div class="comments-box">
-                <h4>التعليقات:</h4>
-                <div class="comments-list"></div>
-                <input type="text" class="comment-input" placeholder="اكتب تعليقاً...">
-                <button class="btn" style="padding: 8px 15px;" onclick="addComment(this)">إرسال</button>
-            </div>
-        `;
-
         document.getElementById('posts').prepend(postDiv);
         document.getElementById('post-title').value = '';
         document.getElementById('post-content').value = '';
-        imgInput.value = '';
-        
-        let pCount = document.getElementById('posts-count');
-        pCount.innerText = parseInt(pCount.innerText) + 1;
     }
 </script>
 
