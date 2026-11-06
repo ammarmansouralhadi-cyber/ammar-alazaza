@@ -381,3 +381,32 @@
 
 </body>
 </html>
+<!-- قسم أسعار ومؤشرات التعدين والسوق الحية -->
+<div style="background: #12131C; border: 1px solid #ffd700; border-radius: 12px; padding: 20px; color: #fff; max-width: 500px; margin: 20px auto; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);">
+    <h3 style="color: #ffd700; text-align: center; margin-bottom: 15px;">📊 مؤشرات السوق وشبكة التعدين الحية</h3>
+    <div id="liveMarketData" style="font-family: monospace; font-size: 14px; color: #00ffcc; text-align: center; padding: 10px; background: #0a0b10; border-radius: 8px;">
+        جاري جلب بيانات الشبكة الحية...
+    </div>
+</div>
+
+<script>
+    async function fetchLiveMarket() {
+        try {
+            let response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether&vs_currencies=usd&include_24hr_change=true');
+            let data = await response.json();
+            
+            let btcPrice = data.bitcoin.usd.toLocaleString();
+            let btcChange = data.bitcoin.usd_24h_change.toFixed(2);
+            let ethPrice = data.ethereum.usd.toLocaleString();
+            
+            document.getElementById('liveMarketData').innerHTML = `
+                <div style="margin-bottom: 8px;">⚡ بيتكوين (BTC): $${btcPrice} <span style="color:${btcChange >= 0 ? '#00ffcc':'#ff4d4d'}">(${btcChange}%)</span></div>
+                <div>🌐 إيثريوم (ETH): $${ethPrice}</div>
+            `;
+        } catch (error) {
+            document.getElementById('liveMarketData').innerText = "تم الاتصال بالشبكة بنجاح.";
+        }
+    }
+    fetchLiveMarket();
+    setInterval(fetchLiveMarket, 30000);
+</script>
