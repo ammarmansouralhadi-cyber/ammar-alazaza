@@ -126,13 +126,8 @@
     <div class="auth-wallet-section" id="auth-section">
         <!-- نموذج تسجيل الدخول / إنشاء الحساب -->
         <div id="auth-form-box">
-            <p style="font-size:13px; color:var(--text-muted);">سجل اسم المستخدم وكلمة المرور الخاصة بك لفتح محفظتك الرقمية الفورية والإيداع والسحب.</p>
             <div class="auth-form">
-                <input type="text" id="username-input" placeholder="اسم المستخدم (Username)...">
-                <input type="password" id="password-input" placeholder="كلمة المرور (Password)...">
                 <br>
-                <button class="btn" onclick="registerOrLogin()">تسجيل / دخول</button>
-                <button class="btn btn-secondary" onclick="forgotPassword()">نسيت كلمة المرور؟</button>
             </div>
         </div>
 
@@ -250,7 +245,6 @@
     setInterval(updateSudanClock, 1000);
     updateSudanClock();
 
-    // نظام تسجيل الحسابات واستعادة كلمة المرور
     let currentUser = localStorage.getItem('ammar_crypto_user');
     let currentBalance = parseFloat(localStorage.getItem('ammar_crypto_bal')) || 1000.00;
 
@@ -261,7 +255,6 @@
     function registerOrLogin() {
         let user = document.getElementById('username-input').value.trim();
         let pass = document.getElementById('password-input').value.trim();
-        if (!user || !pass) { alert('يرجى إدخال اسم المستخدم وكلمة المرور'); return; }
 
         localStorage.setItem('ammar_user_' + user, pass);
         localStorage.setItem('ammar_crypto_user', user);
@@ -276,14 +269,11 @@
 
     function forgotPassword() {
         let user = document.getElementById('username-input').value.trim();
-        if (!user) { alert('يرجى كتابة اسم المستخدم أولاً في خانة اسم المستخدم لاستعادة كلمة المرور'); return; }
         
         if (localStorage.getItem('ammar_user_' + user)) {
             let newPass = 'Ammar@' + Math.floor(1000 + Math.random() * 9000);
             localStorage.setItem('ammar_user_' + user, newPass);
-            alert(`تم استبدال كلمة المرور بنجاح!\nكلمة المرور الجديدة لحسابك (${user}) هي: ${newPass}\nيرجى الاحتفاظ بها وتسجيل الدخول من جديد.`);
         } else {
-            alert('اسم المستخدم غير مسجل مسبقاً في النظام.');
         }
     }
 
